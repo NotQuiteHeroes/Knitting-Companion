@@ -3,13 +3,12 @@ package com.eckstein.paige.knittingcompanion;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 
 public class ViewProjectActivity extends BaseActivity {
 
@@ -127,18 +126,21 @@ public class ViewProjectActivity extends BaseActivity {
         //totalYardage
         final TextView totalYardageField = new TextView(this);
         totalYardageField.setTextSize(15);
+        totalYardageField.setTypeface(getResources().getFont(R.font.mahoni));
         totalYardageField.setId(View.generateViewId());
         totalYardageField.setText(String.valueOf(project.getTotalYardage()));
 
         //yardageUsed
         final TextView yardageUsedField = new TextView(this);
         yardageUsedField.setTextSize(15);
+        yardageUsedField.setTypeface(getResources().getFont(R.font.mahoni));
         yardageUsedField.setId(View.generateViewId());
         yardageUsedField.setText(String.valueOf(project.getYardageUsed()));
 
         //skeins
         final TextView skeinsField = new TextView(this);
         skeinsField.setTextSize(15);
+        skeinsField.setTypeface(getResources().getFont(R.font.mahoni));
         skeinsField.setId(View.generateViewId());
         skeinsField.setText(String.valueOf(project.getSkeins()));
 
@@ -161,6 +163,7 @@ public class ViewProjectActivity extends BaseActivity {
         //size
         final TextView sizeField = new TextView(this);
         sizeField.setTextSize(15);
+        sizeField.setTypeface(getResources().getFont(R.font.mahoni));
         sizeField.setId(View.generateViewId());
         sizeField.setText(String.valueOf(project.getSize()));
 

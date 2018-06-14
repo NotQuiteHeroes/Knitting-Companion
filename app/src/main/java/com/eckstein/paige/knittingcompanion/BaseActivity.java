@@ -1,5 +1,6 @@
 package com.eckstein.paige.knittingcompanion;
 
+        import android.content.Intent;
         import android.os.Bundle;
         import android.support.design.widget.NavigationView;
         import android.support.v4.view.GravityCompat;
@@ -69,7 +70,7 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.projects) {
-
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         } else if (id == R.id.counters) {
 
         } else if (id == R.id.yarn) {

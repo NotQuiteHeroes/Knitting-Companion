@@ -130,18 +130,21 @@ public class CreateProjectActivity extends BaseActivity {
         //totalYardage
         final EditText totalYardageField = new EditText(this);
         totalYardageField.setTextSize(15);
+        totalYardageField.setTypeface(getResources().getFont(R.font.mahoni));
         totalYardageField.setId(View.generateViewId());
         totalYardageField.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         //yardageUsed
         final EditText yardageUsedField = new EditText(this);
         yardageUsedField.setTextSize(15);
+        yardageUsedField.setTypeface(getResources().getFont(R.font.mahoni));
         yardageUsedField.setId(View.generateViewId());
         yardageUsedField.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         //skeins
         final EditText skeinsField = new EditText(this);
         skeinsField.setTextSize(15);
+        skeinsField.setTypeface(getResources().getFont(R.font.mahoni));
         skeinsField.setId(View.generateViewId());
         skeinsField.setInputType(InputType.TYPE_CLASS_NUMBER);
 
@@ -160,6 +163,7 @@ public class CreateProjectActivity extends BaseActivity {
         //size
         final EditText sizeField = new EditText(this);
         sizeField.setTextSize(15);
+        sizeField.setTypeface(getResources().getFont(R.font.mahoni));
         sizeField.setId(View.generateViewId());
         sizeField.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
