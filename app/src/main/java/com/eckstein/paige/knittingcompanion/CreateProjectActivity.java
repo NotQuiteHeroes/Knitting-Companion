@@ -303,10 +303,30 @@ public class CreateProjectActivity extends BaseActivity {
                 projectName = projectNameField.getText().toString();
                 colorWay = colorWayField.getText().toString();
                 note = noteField.getText().toString();
-                totalYardage = Integer.parseInt(totalYardageField.getText().toString());
-                yardageUsed = Integer.parseInt(yardageUsedField.getText().toString());
-                totalSkeins = Integer.parseInt(skeinsField.getText().toString());
-                size = Float.parseFloat(sizeField.getText().toString());
+                String temp = totalYardageField.getText().toString();
+                if(!temp.equals("")) {
+                    totalYardage = Integer.parseInt(temp);
+                } else {
+                    totalYardage = 0;
+                }
+                temp = yardageUsedField.getText().toString();
+                if(!temp.equals("")) {
+                    yardageUsed = Integer.parseInt(temp);
+                } else {
+                    yardageUsed = 0;
+                }
+                temp = skeinsField.getText().toString();
+                if(!temp.equals("")) {
+                    totalSkeins = Integer.parseInt(temp);
+                } else {
+                    totalSkeins = 0;
+                }
+                temp = sizeField.getText().toString();
+                if(!temp.equals("")) {
+                    size = Float.parseFloat(sizeField.getText().toString());
+                } else {
+                    size = 0;
+                }
 
                 Project project = new Project();
                 project.setStartDate(startDate);
