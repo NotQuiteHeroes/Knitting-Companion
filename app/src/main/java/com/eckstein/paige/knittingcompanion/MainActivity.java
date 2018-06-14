@@ -75,6 +75,8 @@ public class MainActivity extends BaseActivity{
 
     public void updateUI(Project project)
     {
+        final Project finalProject = project;
+
         //create new RelativeLayout for each project
         RelativeLayout rel = new RelativeLayout(this);
         //projectName set up
@@ -111,6 +113,15 @@ public class MainActivity extends BaseActivity{
         buttonParams.addRule(RelativeLayout.ALIGN_PARENT_END);
         buttonParams.setMargins(10, 10, 10, 10);
         viewProject.setLayoutParams(buttonParams);
+        viewProject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ViewProjectActivity.class);
+                intent.putExtra("project", finalProject);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //draw line between each project
         View v = new View(this);
