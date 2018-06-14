@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/lightPink</item>
+        <item name="colorPrimaryDark">@color/teal</item>
+        <item name="colorAccent">@color/darkPink</item>
+        <item name="android:textColor">@color/teal</item>
+        <item name="android:textSize">10pt</item>
+        <item name="android:fontFamily">@font/altairbold</item>
+        <item name="android:textColorSecondary">@color/darkPink</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="NavDrawerTextStyle" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textColor">@color/teal</item>
+        <item name="android:textSize">10pt</item>
+        <item name="android:fontFamily">@font/altairbold</item>
+        <item name="android:textColorSecondary">@color/darkPink</item>
+    </style>
+
+</resources>

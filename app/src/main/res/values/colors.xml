@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <color name="gold">#F6BD60</color>
+    <color name="offWhite">#F7EDE2</color>
+    <color name="lightPink">#F5CaC3</color>
+    <color name="teal">#84A59D</color>
+    <color name="darkPink">#F28482</color>
+</resources>
