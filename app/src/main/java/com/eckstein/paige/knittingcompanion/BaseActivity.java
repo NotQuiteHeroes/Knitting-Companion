@@ -70,9 +70,11 @@ public class BaseActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.projects) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.counters) {
-
+            Intent intent = new Intent(this, CounterActivity.class);
+            startActivity(intent);
         } else if (id == R.id.yarn) {
 
         } else if (id == R.id.patterns) {

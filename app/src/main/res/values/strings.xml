@@ -31,4 +31,6 @@
     <string name="skeinsLabel">Skeins:</string>
     <string name="sizeLabel">Size:</string>
     <string name="done">Done</string>
+    <string name="addCounter">Add Counter</string>
+    <string name="counterHint">Counter name...</string>
 </resources>

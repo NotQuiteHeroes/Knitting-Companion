@@ -100,12 +100,14 @@ public class CreateProjectActivity extends BaseActivity {
         //startDate
         final EditText startDateField = new EditText(this);
         startDateField.setTextSize(15);
+        startDateField.setTypeface(getResources().getFont(R.font.mahoni));
         startDateField.setId(View.generateViewId());
         startDateField.setHint(getResources().getString(R.string.startDate));
 
         //endDate
         final EditText endDateField = new EditText(this);
         endDateField.setTextSize(15);
+        endDateField.setTypeface(getResources().getFont(R.font.mahoni));
         endDateField.setId(View.generateViewId());
         endDateField.setHint(getResources().getString(R.string.endDate));
 

@@ -1,10 +1,15 @@
 package com.eckstein.paige.knittingcompanion;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -96,12 +101,14 @@ public class ViewProjectActivity extends BaseActivity {
         //startDate
         final TextView startDateField = new TextView(this);
         startDateField.setTextSize(15);
+        startDateField.setTypeface(getResources().getFont(R.font.mahoni));
         startDateField.setId(View.generateViewId());
         startDateField.setText(project.getStartDate());
 
         //endDate
         final TextView endDateField = new TextView(this);
         endDateField.setTextSize(15);
+        endDateField.setTypeface(getResources().getFont(R.font.mahoni));
         endDateField.setId(View.generateViewId());
         endDateField.setText(project.getEndDate());
 
@@ -281,7 +288,7 @@ public class ViewProjectActivity extends BaseActivity {
 
         RelativeLayout.LayoutParams noteLineParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 5);
         noteLineParams.addRule(RelativeLayout.BELOW, notesLabel.getId());
-        yarnLine.setLayoutParams(noteLineParams);
+        noteLine.setLayoutParams(noteLineParams);
 
         //note field
         RelativeLayout.LayoutParams noteParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -291,7 +298,7 @@ public class ViewProjectActivity extends BaseActivity {
 
 
 
-        //Done button ==============================================================================
+        // buttons =================================================================================
         Button doneButton = new Button(this);
         doneButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
         doneButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
@@ -303,6 +310,38 @@ public class ViewProjectActivity extends BaseActivity {
                 Intent projectData = new Intent(ViewProjectActivity.this, MainActivity.class);
                 startActivity(projectData);
                 finish();
+            }
+        });
+
+        Button addCounter = new Button(this);
+        addCounter.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
+        addCounter.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
+        addCounter.setText(getResources().getString(R.string.addCounter));
+        addCounter.setId(View.generateViewId());
+        addCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewProjectActivity.this);
+                builder.setTitle("Add Counter");
+                View viewInflated = LayoutInflater.from(ViewProjectActivity.this).inflate(R.layout.pop_up, (ViewGroup) findViewById(android.R.id.content), false);
+                final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+                builder.setView(viewInflated);
+
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                        Counter counter = new Counter(input.getText().toString());
+                        project.setCounters(counter);
+                    }
+                });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -330,6 +369,7 @@ public class ViewProjectActivity extends BaseActivity {
         rel.addView(noteField);
 
         main.addView(rel);
+        main.addView(addCounter);
         main.addView(doneButton);
     }
 }

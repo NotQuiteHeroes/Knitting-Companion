@@ -3,9 +3,18 @@ package com.eckstein.paige.knittingcompanion;
 public class Counter {
 
     private int ones, tens, hundreds;
+    String name;
 
     Counter()
     {
+        ones = 0;
+        tens = 0;
+        hundreds = 0;
+    }
+
+    Counter(String name)
+    {
+        this.name = name;
         ones = 0;
         tens = 0;
         hundreds = 0;

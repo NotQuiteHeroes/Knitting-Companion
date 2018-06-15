@@ -32,19 +32,21 @@ public class Project implements Parcelable{
         counters = new ArrayList<>();
     }
 
-    Project(String startDate, String patternName, String yarnName, String projectName, int totalYardage, String colorway, int size)
+    Project(String startDate, String endDate, String patternName, String projectName,
+            String yarnName, int totalYardage, int yardageUsed, String colorway, String note,
+            float size, int totalSkeins)
     {
         this.startDate = startDate;
-        endDate = "--/--/--";
+        this.endDate = endDate;
         this.patternName = patternName;
+        this.projectName = projectName;
         this.yarnName = yarnName;
-        this.projectName = "";
         this.totalYardage = totalYardage;
-        yardageUsed = 0;
+        this.yardageUsed = yardageUsed;
         this.colorWay = colorway;
-        note = "";
+        this.note = note;
         this.size = size;
-        totalSkeins = 0;
+        this.totalSkeins = totalSkeins;
         notes = new ArrayList<>();
         counters = new ArrayList<>();
     }
