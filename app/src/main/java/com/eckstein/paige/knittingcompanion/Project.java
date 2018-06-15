@@ -12,7 +12,6 @@ public class Project implements Parcelable{
     private String colorWay, note;
     private float size;
     private ArrayList<String> notes;
-    private ArrayList<Counter> counters;
 
     //constructors
     Project()
@@ -29,7 +28,6 @@ public class Project implements Parcelable{
         size = 0;
         totalSkeins = 0;
         notes = new ArrayList<>();
-        counters = new ArrayList<>();
     }
 
     Project(String startDate, String endDate, String patternName, String projectName,
@@ -48,7 +46,6 @@ public class Project implements Parcelable{
         this.size = size;
         this.totalSkeins = totalSkeins;
         notes = new ArrayList<>();
-        counters = new ArrayList<>();
     }
 
     //getters
@@ -94,18 +91,11 @@ public class Project implements Parcelable{
         return size;
     }
 
-    public ArrayList<Counter> getAllCounters() {
-        return counters;
-    }
 
     public ArrayList<String> getAllNotes() {
         return notes;
     }
 
-    public Counter getCounter(int index)
-    {
-        return counters.get(index);
-    }
 
     public String getNote(int index)
     {
@@ -166,9 +156,6 @@ public class Project implements Parcelable{
         notes.add(note);
     }
 
-    public void setCounters(Counter newCounter) {
-        counters.add(newCounter);
-    }
 
     public void setSkeins(int skeins)
     {
@@ -194,7 +181,6 @@ public class Project implements Parcelable{
         dest.writeString(colorWay);
         dest.writeFloat(size);
         dest.writeList(notes);
-        dest.writeList(counters);
 
     }
 
@@ -210,7 +196,6 @@ public class Project implements Parcelable{
         this.colorWay = in.readString();
         this.size = in.readFloat();
         this.notes = in.readArrayList(null);
-        this.counters = in.readArrayList(null);
     }
 
     public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>()

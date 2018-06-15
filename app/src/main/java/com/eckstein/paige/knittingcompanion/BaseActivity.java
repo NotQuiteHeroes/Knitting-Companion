@@ -73,10 +73,11 @@ public class BaseActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.counters) {
-            Intent intent = new Intent(this, CounterActivity.class);
+            Intent intent = new Intent(this, ViewCounterActivity.class);
             startActivity(intent);
         } else if (id == R.id.yarn) {
-
+            Intent intent = new Intent(this, ViewStashActivity.class);
+            startActivity(intent);
         } else if (id == R.id.patterns) {
 
         } else if (id == R.id.shops) {

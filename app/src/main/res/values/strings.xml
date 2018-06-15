@@ -33,4 +33,15 @@
     <string name="done">Done</string>
     <string name="addCounter">Add Counter</string>
     <string name="counterHint">Counter name...</string>
+    <string name="edit">Edit</string>
+    <string name="addYarn">Add Yarn</string>
+
+    <string name="projectNameLabel">Project Name:</string>
+    <string name="patternNameLabel">Pattern Name:</string>
+    <string name="startLabel">Start Date:</string>
+    <string name="endLabel">End Date:</string>
+    <string name="yarnNameLabel">Yarn Name:</string>
+    <string name="colorWayLabel">Colorway:</string>
+    <string name="weightLabel">Yarn Weight:</string>
+    <string name="fiberLabel">Fiber Content:</string>
 </resources>

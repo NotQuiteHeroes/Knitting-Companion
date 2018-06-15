@@ -30,6 +30,12 @@ public class ViewProjectActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         project = bundle.getParcelable("project");
 
+        updateUI(project);
+    }
+
+    public void updateUI(Project project)
+    {
+        final Project finalProject = project;
         //Project Headers ==========================================================================
         //project label
         TextView projectLabel = new TextView(this);
@@ -68,7 +74,49 @@ public class ViewProjectActivity extends BaseActivity {
         noteLine.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
 
 
-        //int field labels =========================================================================
+        //field labels =============================================================================
+        //project name label
+        TextView projectNameLabel = new TextView(this);
+        projectNameLabel.setTextSize(15);
+        projectNameLabel.setId(View.generateViewId());
+        projectNameLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        projectNameLabel.setText(getResources().getString(R.string.projectNameLabel));
+
+        //pattern name label
+        TextView patternNameLabel = new TextView(this);
+        patternNameLabel.setTextSize(15);
+        patternNameLabel.setId(View.generateViewId());
+        patternNameLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        patternNameLabel.setText(getResources().getString(R.string.patternNameLabel));
+
+        //start date label
+        TextView startLabel = new TextView(this);
+        startLabel.setTextSize(15);
+        startLabel.setId(View.generateViewId());
+        startLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        startLabel.setText(getResources().getString(R.string.startLabel));
+
+        //end date label
+        TextView endLabel = new TextView(this);
+        endLabel.setTextSize(15);
+        endLabel.setId(View.generateViewId());
+        endLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        endLabel.setText(getResources().getString(R.string.endLabel));
+
+        //yarn name label
+        TextView yarnNameLabel = new TextView(this);
+        yarnNameLabel.setTextSize(15);
+        yarnNameLabel.setId(View.generateViewId());
+        yarnNameLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        yarnNameLabel.setText(getResources().getString(R.string.yarnNameLabel));
+
+        //colorway label
+        TextView colorwayLabel = new TextView(this);
+        colorwayLabel.setTextSize(15);
+        colorwayLabel.setId(View.generateViewId());
+        colorwayLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
+        colorwayLabel.setText(getResources().getString(R.string.colorWayLabel));
+
         //totalYardage label
         TextView totalYardageLabel = new TextView(this);
         totalYardageLabel.setTextSize(15);
@@ -186,27 +234,51 @@ public class ViewProjectActivity extends BaseActivity {
         projectLineParams.addRule(RelativeLayout.BELOW, projectLabel.getId());
         projectLine.setLayoutParams(projectLineParams);
 
+        //project name label
+        RelativeLayout.LayoutParams projectNameLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        projectNameLabelParams.addRule(RelativeLayout.BELOW, projectLine.getId());
+        projectNameLabelParams.setMargins(15, 10, 10, 10);
+        projectNameLabel.setLayoutParams(projectNameLabelParams);
+
         //project name
         RelativeLayout.LayoutParams projectNameParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        projectNameParams.addRule(RelativeLayout.BELOW, projectLine.getId());
+        projectNameParams.addRule(RelativeLayout.BELOW, projectNameLabel.getId());
         projectNameParams.setMargins(15, 10, 10, 10);
         projectNameField.setLayoutParams(projectNameParams);
 
+        //pattern name label
+        RelativeLayout.LayoutParams patternNameLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        patternNameLabelParams.addRule(RelativeLayout.BELOW, projectNameField.getId());
+        patternNameLabelParams.setMargins(15, 10, 10, 10);
+        patternNameLabel.setLayoutParams(patternNameLabelParams);
+
         //pattern name
         RelativeLayout.LayoutParams patternNameParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        patternNameParams.addRule(RelativeLayout.BELOW, projectNameField.getId());
+        patternNameParams.addRule(RelativeLayout.BELOW, patternNameLabel.getId());
         patternNameParams.setMargins(15, 10, 10, 10);
         patternNameField.setLayoutParams(patternNameParams);
 
+        //start date label
+        RelativeLayout.LayoutParams startLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        startLabelParams.addRule(RelativeLayout.BELOW, patternNameField.getId());
+        startLabelParams.setMargins(15, 10, 10, 10);
+        startLabel.setLayoutParams(startLabelParams);
+
         //start date
         RelativeLayout.LayoutParams startParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        startParams.addRule(RelativeLayout.BELOW, patternNameField.getId());
+        startParams.addRule(RelativeLayout.BELOW, startLabel.getId());
         startParams.setMargins(15, 10, 10, 10);
         startDateField.setLayoutParams(startParams);
 
+        //end date label
+        RelativeLayout.LayoutParams endLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        endLabelParams.addRule(RelativeLayout.BELOW, startDateField.getId());
+        endLabelParams.setMargins(15, 10, 10, 10);
+        endLabel.setLayoutParams(endLabelParams);
+
         //end date
         RelativeLayout.LayoutParams endParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        endParams.addRule(RelativeLayout.BELOW, startDateField.getId());
+        endParams.addRule(RelativeLayout.BELOW, endLabel.getId());
         endParams.setMargins(15, 10, 10, 10);
         endDateField.setLayoutParams(endParams);
 
@@ -244,15 +316,27 @@ public class ViewProjectActivity extends BaseActivity {
         yarnLineParams.addRule(RelativeLayout.BELOW, yarnLabel.getId());
         yarnLine.setLayoutParams(yarnLineParams);
 
+        //yarn name label
+        RelativeLayout.LayoutParams yarnNameLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        yarnNameLabelParams.addRule(RelativeLayout.BELOW, yarnLine.getId());
+        yarnNameLabelParams.setMargins(15, 10, 10, 10);
+        yarnNameLabel.setLayoutParams(yarnNameLabelParams);
+
         //yarn name
         RelativeLayout.LayoutParams yarnNameParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        yarnNameParams.addRule(RelativeLayout.BELOW, yarnLabel.getId());
+        yarnNameParams.addRule(RelativeLayout.BELOW, yarnNameLabel.getId());
         yarnNameParams.setMargins(15, 10, 10, 10);
         yarnNameField.setLayoutParams(yarnNameParams);
 
+        //colorway label
+        RelativeLayout.LayoutParams colorwayLabelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        colorwayLabelParams.addRule(RelativeLayout.BELOW, yarnNameField.getId());
+        colorwayLabelParams.setMargins(15, 10, 10, 10);
+        colorwayLabel.setLayoutParams(colorwayLabelParams);
+
         //colorway
         RelativeLayout.LayoutParams colorwayParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        colorwayParams.addRule(RelativeLayout.BELOW, yarnNameField.getId());
+        colorwayParams.addRule(RelativeLayout.BELOW, colorwayLabel.getId());
         colorwayParams.setMargins(15, 10, 10, 10);
         colorWayField.setLayoutParams(colorwayParams);
 
@@ -296,28 +380,18 @@ public class ViewProjectActivity extends BaseActivity {
         noteParams.setMargins(15, 10, 10, 10);
         noteField.setLayoutParams(noteParams);
 
-
-
-        // buttons =================================================================================
-        Button doneButton = new Button(this);
-        doneButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
-        doneButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
-        doneButton.setText(getResources().getString(R.string.done));
-        doneButton.setId(View.generateViewId());
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent projectData = new Intent(ViewProjectActivity.this, MainActivity.class);
-                startActivity(projectData);
-                finish();
-            }
-        });
-
+        // add counter button =====================================================================
         Button addCounter = new Button(this);
         addCounter.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
         addCounter.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
         addCounter.setText(getResources().getString(R.string.addCounter));
         addCounter.setId(View.generateViewId());
+
+        RelativeLayout.LayoutParams counterParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        counterParams.addRule(RelativeLayout.BELOW, noteField.getId());
+        counterParams.setMargins(15, 10, 10, 10);
+        addCounter.setLayoutParams(counterParams);
+
         addCounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -331,8 +405,8 @@ public class ViewProjectActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        Counter counter = new Counter(input.getText().toString());
-                        project.setCounters(counter);
+                        Counter counter = new Counter(input.getText().toString(), finalProject.getProjectName());
+                        updateCounterDB(counter);
                     }
                 });
                 builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -345,12 +419,59 @@ public class ViewProjectActivity extends BaseActivity {
             }
         });
 
+        // Edit button =============================================================================
+        Button editButton = new Button(this);
+        editButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
+        editButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
+        editButton.setText(getResources().getString(R.string.edit));
+        editButton.setId(View.generateViewId());
+
+        RelativeLayout.LayoutParams editParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        editParams.addRule(RelativeLayout.BELOW, addCounter.getId());
+        editParams.setMargins(15, 10, 10, 10);
+        editButton.setLayoutParams(editParams);
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent projectData = new Intent(ViewProjectActivity.this, EditProjectActivity.class);
+                projectData.putExtra("project", finalProject);
+                startActivityForResult(projectData, 1);
+            }
+        });
+
+        // done button =============================================================================
+        Button doneButton = new Button(this);
+        doneButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
+        doneButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
+        doneButton.setText(getResources().getString(R.string.done));
+        doneButton.setId(View.generateViewId());
+
+        RelativeLayout.LayoutParams doneParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        doneParams.addRule(RelativeLayout.BELOW, editButton.getId());
+        doneParams.setMargins(15, 10, 10, 10);
+        doneButton.setLayoutParams(doneParams);
+
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent projectData = new Intent(ViewProjectActivity.this, MainActivity.class);
+                startActivity(projectData);
+                finish();
+            }
+        });
+
+
         // add views to relative layout ===========================================================
         rel.addView(projectLabel);
         rel.addView(projectLine);
+        rel.addView(projectNameLabel);
         rel.addView(projectNameField);
+        rel.addView(patternNameLabel);
         rel.addView(patternNameField);
+        rel.addView(startLabel);
         rel.addView(startDateField);
+        rel.addView(endLabel);
         rel.addView(endDateField);
         rel.addView(sizeLabel);
         rel.addView(sizeField);
@@ -358,7 +479,9 @@ public class ViewProjectActivity extends BaseActivity {
         rel.addView(yardageUsedField);
         rel.addView(yarnLabel);
         rel.addView(yarnLine);
+        rel.addView(yarnNameLabel);
         rel.addView(yarnNameField);
+        rel.addView(colorwayLabel);
         rel.addView(colorWayField);
         rel.addView(totalYardageLabel);
         rel.addView(totalYardageField);
@@ -367,9 +490,68 @@ public class ViewProjectActivity extends BaseActivity {
         rel.addView(notesLabel);
         rel.addView(noteLine);
         rel.addView(noteField);
+        rel.addView(addCounter);
+        rel.addView(editButton);
+        rel.addView(doneButton);
 
         main.addView(rel);
-        main.addView(addCounter);
-        main.addView(doneButton);
+    }
+
+    public void updateDB(Project project)
+    {
+        DBHelper db = new DBHelper(this);
+        String projectName, patternName, yarnName;
+        String start, end;
+        String totalYards, yardsUsed, colorway;
+        String note, size, skeins;
+
+        projectName = project.getProjectName();
+        patternName = project.getPatternName();
+        yarnName = project.getYarnName();
+        start = project.getStartDate();
+        end = project.getEndDate();
+        totalYards = String.valueOf(project.getTotalYardage());
+        yardsUsed = String.valueOf(project.getYardageUsed());
+        colorway = project.getColorWay();
+        note = project.getNote(0);
+        size = String.valueOf(project.getSize());
+        skeins = String.valueOf(project.getSkeins());
+
+        db.updateProject(projectName, patternName, yarnName, start, end, totalYards, yardsUsed,
+                skeins, colorway, note, size);
+    }
+
+    public void updateCounterDB(Counter counter)
+    {
+        CounterDBHelper db = new CounterDBHelper(this);
+        String projectName, counterName, ones, tens, hundreds;
+
+        projectName = counter.getProjectName();
+        counterName = counter.getName();
+        ones = String.valueOf(counter.getOnes());
+        tens = String.valueOf(counter.getTens());
+        hundreds = String.valueOf(counter.getHundreds());
+
+        db.updateCounter(projectName, counterName, ones, tens, hundreds);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Bundle bundle = data.getExtras();
+                if(bundle != null)
+                {
+                    Project project = bundle.getParcelable("project");
+                    updateDB(project);
+                    updateUI(project);
+                }
+            }
+        }
     }
 }

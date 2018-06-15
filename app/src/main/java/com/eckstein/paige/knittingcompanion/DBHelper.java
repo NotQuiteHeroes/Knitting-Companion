@@ -63,23 +63,28 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLORWAY, colorway);
         values.put(NOTE, note);
         values.put(SIZE, size);
-        db.insert(PROJECT_NAME, null, values);
+        db.insert(TABLE_NAME, null, values);
+        db.close();
         return true;
     }
 
-    public Cursor getdata(int id)
+    public Cursor getdata(String projectName)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("select * from " + TABLE_NAME + " where id="+id+"", null);
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME + " where project_name="+projectName+"", null);
+        db.close();
+        return res;
     }
 
     public int numberOfRows()
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        return ((int) DatabaseUtils.queryNumEntries(db, TABLE_NAME));
+        int numRows = ((int) DatabaseUtils.queryNumEntries(db, TABLE_NAME));
+        db.close();
+        return numRows;
     }
 
-    public boolean updateProject(Integer id, String projectName, String patternName, String yarnName, String start,
+    public boolean updateProject(String projectName, String patternName, String yarnName, String start,
                                  String end, String totalYards, String yardsUsed, String skeins, String
                                          colorway, String note, String size)
     {
@@ -96,14 +101,17 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLORWAY, colorway);
         values.put(NOTE, note);
         values.put(SIZE, size);
-        db.update(TABLE_NAME, values, "id = ? ", new String[] {Integer.toString(id)});
+        db.update(TABLE_NAME, values, "project_name = ? ", new String[] {projectName});
+        db.close();
         return true;
     }
 
-    public Integer deleteProject (Integer id)
+    public Integer deleteProject (String projectName)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_NAME, "id = ? ", new String[] { Integer.toString(id)});
+        int delete = db.delete(TABLE_NAME, "project_name = ? ", new String[] { projectName });
+        db.close();
+        return delete;
     }
 
     public ArrayList<Project> getAllProjects()
@@ -139,6 +147,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         res.close();
+        db.close();
         return projects;
     }
 }

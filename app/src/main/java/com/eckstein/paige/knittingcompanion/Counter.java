@@ -3,21 +3,53 @@ package com.eckstein.paige.knittingcompanion;
 public class Counter {
 
     private int ones, tens, hundreds;
-    String name;
+    String name, projectName;
 
-    Counter()
+    Counter(String projectName)
     {
+        name = "";
+        this.projectName = projectName;
         ones = 0;
         tens = 0;
         hundreds = 0;
     }
 
-    Counter(String name)
+    Counter(String name, String projectName)
     {
         this.name = name;
+        this.projectName = projectName;
         ones = 0;
         tens = 0;
         hundreds = 0;
+    }
+
+    Counter(String name, String projectName, int ones, int tens, int hundreds)
+    {
+        this.name = name;
+        this.projectName = projectName;
+        this.ones = ones;
+        this.tens = tens;
+        this.hundreds = hundreds;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getProjectName()
+    {
+        return projectName;
+    }
+
+    public void setName(String newName)
+    {
+        name = newName;
+    }
+
+    public void setProjectName(String newProject)
+    {
+        projectName = newProject;
     }
 
     public int getOnes()

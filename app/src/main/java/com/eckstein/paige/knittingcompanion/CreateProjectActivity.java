@@ -347,6 +347,8 @@ public class CreateProjectActivity extends BaseActivity {
                 project.setSkeins(totalSkeins);
                 project.setSize(size);
 
+                updateDb(project);
+
                 Intent projectData = new Intent(CreateProjectActivity.this, MainActivity.class);
                 projectData.putExtra("project", project);
                 setResult(RESULT_OK, projectData);
@@ -380,5 +382,29 @@ public class CreateProjectActivity extends BaseActivity {
         main.addView(rel);
         main.addView(doneButton);
 
+    }
+
+    public void updateDb(Project project)
+    {
+        DBHelper db = new DBHelper(this);
+        String projectName, patternName, yarnName;
+        String start, end;
+        String totalYards, yardsUsed, colorway;
+        String note, size, skeins;
+
+        projectName = project.getProjectName();
+        patternName = project.getPatternName();
+        yarnName = project.getYarnName();
+        start = project.getStartDate();
+        end = project.getEndDate();
+        totalYards = String.valueOf(project.getTotalYardage());
+        yardsUsed = String.valueOf(project.getYardageUsed());
+        colorway = project.getColorWay();
+        note = project.getNote(0);
+        size = String.valueOf(project.getSize());
+        skeins = String.valueOf(project.getSkeins());
+
+        db.insert(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
+                colorway, note, size);
     }
 }

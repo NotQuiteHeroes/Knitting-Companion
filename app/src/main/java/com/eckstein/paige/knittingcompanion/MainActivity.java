@@ -32,6 +32,8 @@ public class MainActivity extends BaseActivity{
 
         allProjects = new ArrayList<>();
         main = findViewById(R.id.mainLayout);
+        DBHelper db = new DBHelper(this);
+        allProjects = db.getAllProjects();
 
         for(Project project: allProjects) {
             updateUI(project);
@@ -66,7 +68,6 @@ public class MainActivity extends BaseActivity{
                 if(bundle != null)
                 {
                     Project project = bundle.getParcelable("project");
-                    allProjects.add(project);
                     updateUI(project);
                 }
             }
