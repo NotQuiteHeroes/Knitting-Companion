@@ -48,8 +48,8 @@
     <string name="clear">Clear</string>
     <string name="fiberLabel">Fiber Content:</string>
 
-    <string name="API_username">read-aae90af42292601816162d0f20e0fabd</string>
-    <string name="API_password">ofusXuGjSDzHVaQ+pChZZ+wjOIzAby1W1QXwMFRM</string>
+    <string name="API_username">API username</string>
+    <string name="API_password">API password/string>
 
     <string-array name="yarn_weights_array">
         <item>Thread</item>
@@ -75,5 +75,5 @@
     <string name="yardageHint">Yardage to search...</string>
     <string name="search">Search</string>
     <string name="priority">Prioritize free and popular projects?</string>
-    <string name="API_KEY">AIzaSyAo9jIsPuFufA7pu5Od6wV8CobitsI1Df8</string>
+    <string name="API_KEY">API KEY HERE</string>
 </resources>
