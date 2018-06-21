@@ -1,4 +1,4 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.Projects;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class CreateProjectActivity extends BaseActivity {
+import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.MainActivity;
+import com.eckstein.paige.knittingcompanion.R;
+
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
+
+public class EditProjectActivity extends BaseActivity {
 
     LinearLayout main;
     RelativeLayout rel;
@@ -20,14 +26,17 @@ public class CreateProjectActivity extends BaseActivity {
     private int totalYardage, yardageUsed, totalSkeins;
     private String colorWay, note;
     private float size;
+    private Project project;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
+
+        Bundle bundle = getIntent().getExtras();
+        project = bundle.getParcelable("project");
 
         //Project Headers ==========================================================================
         //project label
@@ -102,32 +111,32 @@ public class CreateProjectActivity extends BaseActivity {
         startDateField.setTextSize(15);
         startDateField.setTypeface(getResources().getFont(R.font.mahoni));
         startDateField.setId(View.generateViewId());
-        startDateField.setHint(getResources().getString(R.string.startDate));
+        startDateField.setHint(project.getStartDate());
 
         //endDate
         final EditText endDateField = new EditText(this);
         endDateField.setTextSize(15);
         endDateField.setTypeface(getResources().getFont(R.font.mahoni));
         endDateField.setId(View.generateViewId());
-        endDateField.setHint(getResources().getString(R.string.endDate));
+        endDateField.setHint(project.getEndDate());
 
         //patternName
         final EditText patternNameField = new EditText(this);
         patternNameField.setTextSize(15);
         patternNameField.setId(View.generateViewId());
-        patternNameField.setHint(getResources().getString(R.string.patternName));
+        patternNameField.setHint(project.getPatternName());
 
         //projectName
         final EditText projectNameField = new EditText(this);
         projectNameField.setTextSize(15);
         projectNameField.setId(View.generateViewId());
-        projectNameField.setHint(getResources().getString(R.string.projectName));
+        projectNameField.setHint(project.getProjectName());
 
         //yarnName
         final EditText yarnNameField = new EditText(this);
         yarnNameField.setTextSize(15);
         yarnNameField.setId(View.generateViewId());
-        yarnNameField.setHint(getResources().getString(R.string.yarnName));
+        yarnNameField.setHint(project.getYarnName());
 
         //totalYardage
         final EditText totalYardageField = new EditText(this);
@@ -154,13 +163,13 @@ public class CreateProjectActivity extends BaseActivity {
         final EditText colorWayField = new EditText(this);
         colorWayField.setTextSize(15);
         colorWayField.setId(View.generateViewId());
-        colorWayField.setHint(getResources().getString(R.string.colorWayName));
+        colorWayField.setHint(project.getColorWay());
 
         //note
         final EditText noteField = new EditText(this);
         noteField.setTextSize(15);
         noteField.setId(View.generateViewId());
-        noteField.setHint(getResources().getString(R.string.notesName));
+        noteField.setHint(project.getNote(0));
 
         //size
         final EditText sizeField = new EditText(this);
@@ -292,7 +301,6 @@ public class CreateProjectActivity extends BaseActivity {
         noteField.setLayoutParams(noteParams);
 
 
-
         //Done button ==============================================================================
         Button doneButton = new Button(this);
         doneButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
@@ -310,25 +318,25 @@ public class CreateProjectActivity extends BaseActivity {
                 colorWay = colorWayField.getText().toString();
                 note = noteField.getText().toString();
                 String temp = totalYardageField.getText().toString();
-                if(!temp.equals("")) {
+                if (!temp.equals("")) {
                     totalYardage = Integer.parseInt(temp);
                 } else {
                     totalYardage = 0;
                 }
                 temp = yardageUsedField.getText().toString();
-                if(!temp.equals("")) {
+                if (!temp.equals("")) {
                     yardageUsed = Integer.parseInt(temp);
                 } else {
                     yardageUsed = 0;
                 }
                 temp = skeinsField.getText().toString();
-                if(!temp.equals("")) {
+                if (!temp.equals("")) {
                     totalSkeins = Integer.parseInt(temp);
                 } else {
                     totalSkeins = 0;
                 }
                 temp = sizeField.getText().toString();
-                if(!temp.equals("")) {
+                if (!temp.equals("")) {
                     size = Float.parseFloat(sizeField.getText().toString());
                 } else {
                     size = 0;
@@ -349,7 +357,7 @@ public class CreateProjectActivity extends BaseActivity {
 
                 updateDb(project);
 
-                Intent projectData = new Intent(CreateProjectActivity.this, MainActivity.class);
+                Intent projectData = new Intent(EditProjectActivity.this, MainActivity.class);
                 projectData.putExtra("project", project);
                 setResult(RESULT_OK, projectData);
                 finish();
@@ -384,8 +392,7 @@ public class CreateProjectActivity extends BaseActivity {
 
     }
 
-    public void updateDb(Project project)
-    {
+    public void updateDb(Project project) {
         DBHelper db = new DBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
@@ -404,7 +411,7 @@ public class CreateProjectActivity extends BaseActivity {
         size = String.valueOf(project.getSize());
         skeins = String.valueOf(project.getSkeins());
 
-        db.insert(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
+        db.updateProject(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
                 colorway, note, size);
     }
 }

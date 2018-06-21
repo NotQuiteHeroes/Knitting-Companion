@@ -1,11 +1,11 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.Projects;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Project implements Parcelable{
+public class Project implements Parcelable {
     private String startDate, endDate;
     private String patternName, yarnName, projectName;
     private int totalYardage, yardageUsed, totalSkeins;
@@ -14,8 +14,7 @@ public class Project implements Parcelable{
     private ArrayList<String> notes;
 
     //constructors
-    Project()
-    {
+    public Project() {
         startDate = "--/--/--";
         endDate = "--/--/--";
         patternName = "";
@@ -30,10 +29,9 @@ public class Project implements Parcelable{
         notes = new ArrayList<>();
     }
 
-    Project(String startDate, String endDate, String patternName, String projectName,
+    public Project(String startDate, String endDate, String patternName, String projectName,
             String yarnName, int totalYardage, int yardageUsed, String colorway, String note,
-            float size, int totalSkeins)
-    {
+            float size, int totalSkeins) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.patternName = patternName;
@@ -49,45 +47,39 @@ public class Project implements Parcelable{
     }
 
     //getters
-    public String getStartDate()
-    {
+    public String getStartDate() {
         return startDate;
     }
 
-    public String getEndDate()
-    {
+    public String getEndDate() {
         return endDate;
     }
 
-    public String getPatternName()
-    {
+    public String getPatternName() {
         return patternName;
     }
 
-    public String getYarnName()
-    {
+    public String getYarnName() {
         return yarnName;
     }
 
-    public String getProjectName() { return projectName; }
+    public String getProjectName() {
+        return projectName;
+    }
 
-    public String getColorWay()
-    {
+    public String getColorWay() {
         return colorWay;
     }
 
-    public int getTotalYardage()
-    {
+    public int getTotalYardage() {
         return totalYardage;
     }
 
-    public int getYardageUsed()
-    {
+    public int getYardageUsed() {
         return yardageUsed;
     }
 
-    public float getSize()
-    {
+    public float getSize() {
         return size;
     }
 
@@ -97,80 +89,72 @@ public class Project implements Parcelable{
     }
 
 
-    public String getNote(int index)
-    {
-        return notes.get(index);
+    public String getNote(int index) {
+        if (notes.size() > 0) {
+            return notes.get(index);
+        } else {
+            return "";
+        }
     }
 
-    public int getSkeins()
-    {
+    public int getSkeins() {
         return totalSkeins;
     }
 
     //setters
-    public void setStartDate(String newStart)
-    {
+    public void setStartDate(String newStart) {
         startDate = newStart;
     }
 
-    public void setEndDate(String newEnd)
-    {
+    public void setEndDate(String newEnd) {
         endDate = newEnd;
     }
 
-    public void setPatternName(String pattern)
-    {
+    public void setPatternName(String pattern) {
         patternName = pattern;
     }
 
-    public void setYarnName(String yarn)
-    {
+    public void setYarnName(String yarn) {
         yarnName = yarn;
     }
 
-    public void setProjectName(String name) { projectName = name; }
+    public void setProjectName(String name) {
+        projectName = name;
+    }
 
-    public void setTotalYardage(int yards)
-    {
+    public void setTotalYardage(int yards) {
         totalYardage = yards;
     }
 
-    public void setYardageUsed(int yards)
-    {
+    public void setYardageUsed(int yards) {
         yardageUsed = yards;
     }
 
-    public void setColorWay(String colorway)
-    {
+    public void setColorWay(String colorway) {
         colorWay = colorway;
     }
 
-    public void setSize(float newSize)
-    {
+    public void setSize(float newSize) {
         size = newSize;
     }
 
 
-    public void setNote(String note)
-    {
+    public void setNote(String note) {
         notes.add(note);
     }
 
 
-    public void setSkeins(int skeins)
-    {
+    public void setSkeins(int skeins) {
         totalSkeins = skeins;
     }
 
     @Override
-    public int describeContents()
-    {
+    public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(startDate);
         dest.writeString(endDate);
         dest.writeString(patternName);
@@ -184,8 +168,7 @@ public class Project implements Parcelable{
 
     }
 
-    private Project(Parcel in)
-    {
+    private Project(Parcel in) {
         this.startDate = in.readString();
         this.endDate = in.readString();
         this.patternName = in.readString();
@@ -198,17 +181,14 @@ public class Project implements Parcelable{
         this.notes = in.readArrayList(null);
     }
 
-    public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>()
-    {
+    public static final Parcelable.Creator<Project> CREATOR = new Parcelable.Creator<Project>() {
         @Override
-        public Project createFromParcel(Parcel source)
-        {
+        public Project createFromParcel(Parcel source) {
             return new Project(source);
         }
 
         @Override
-        public Project[] newArray(int size)
-        {
+        public Project[] newArray(int size) {
             return new Project[size];
         }
     };

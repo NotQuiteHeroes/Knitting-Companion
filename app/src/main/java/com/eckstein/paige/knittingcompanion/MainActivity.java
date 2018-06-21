@@ -1,27 +1,24 @@
 package com.eckstein.paige.knittingcompanion;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
+
+import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends BaseActivity{
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
+import com.eckstein.paige.knittingcompanion.Projects.CreateProjectActivity;
+import com.eckstein.paige.knittingcompanion.Projects.Project;
+import com.eckstein.paige.knittingcompanion.Projects.ViewProjectActivity;
+
+public class MainActivity extends BaseActivity {
 
     ArrayList<Project> allProjects;
     LinearLayout main;
@@ -35,7 +32,7 @@ public class MainActivity extends BaseActivity{
         DBHelper db = new DBHelper(this);
         allProjects = db.getAllProjects();
 
-        for(Project project: allProjects) {
+        for (Project project : allProjects) {
             updateUI(project);
         }
 
@@ -56,17 +53,13 @@ public class MainActivity extends BaseActivity{
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1)
-        {
-            if(resultCode == RESULT_OK)
-            {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
-                if(bundle != null)
-                {
+                if (bundle != null) {
                     Project project = bundle.getParcelable("project");
                     updateUI(project);
                 }
@@ -74,8 +67,7 @@ public class MainActivity extends BaseActivity{
         }
     }
 
-    public void updateUI(Project project)
-    {
+    public void updateUI(Project project) {
         final Project finalProject = project;
 
         //create new RelativeLayout for each project

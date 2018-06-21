@@ -24,9 +24,9 @@
     <item android:title="@string/find">
         <menu>
             <item
-                android:id="@+id/patterns"
+                android:id="@+id/yarns"
                 android:icon="@drawable/pattern"
-                android:title="@string/patterns" />
+                android:title="@string/yarns" />
             <item
                 android:id="@+id/shops"
                 android:icon="@drawable/shop"

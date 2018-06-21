@@ -1,4 +1,4 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.Stash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.R;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn.ViewYarnActivity;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
+
 import java.util.ArrayList;
+
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.StashDBHelper;
 
 public class ViewStashActivity extends BaseActivity {
 
@@ -17,8 +24,7 @@ public class ViewStashActivity extends BaseActivity {
     LinearLayout main;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         stash = new ArrayList<>();
@@ -26,8 +32,7 @@ public class ViewStashActivity extends BaseActivity {
         StashDBHelper db = new StashDBHelper(this);
         stash = db.getAllYarn();
 
-        for(Yarn yarn: stash)
-        {
+        for (Yarn yarn : stash) {
             updateUI(yarn);
         }
 
@@ -46,17 +51,13 @@ public class ViewStashActivity extends BaseActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1)
-        {
-            if(resultCode == RESULT_OK)
-            {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
-                if(bundle != null)
-                {
+                if (bundle != null) {
                     Yarn yarn = bundle.getParcelable("yarn");
                     updateUI(yarn);
                 }
@@ -64,8 +65,7 @@ public class ViewStashActivity extends BaseActivity {
         }
     }
 
-    public void updateUI(Yarn yarn)
-    {
+    public void updateUI(Yarn yarn) {
         final Yarn finalYarn = yarn;
         RelativeLayout rel = new RelativeLayout(this);
 

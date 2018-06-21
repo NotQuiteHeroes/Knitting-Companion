@@ -1,4 +1,4 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.Projects;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,9 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.MainActivity;
+import com.eckstein.paige.knittingcompanion.R;
+
+import com.eckstein.paige.knittingcompanion.Counters.Counter;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.CounterDBHelper;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
 
 
 public class ViewProjectActivity extends BaseActivity {
@@ -22,8 +30,7 @@ public class ViewProjectActivity extends BaseActivity {
     Project project;
 
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
@@ -33,8 +40,7 @@ public class ViewProjectActivity extends BaseActivity {
         updateUI(project);
     }
 
-    public void updateUI(Project project)
-    {
+    public void updateUI(Project project) {
         final Project finalProject = project;
         //Project Headers ==========================================================================
         //project label
@@ -210,9 +216,8 @@ public class ViewProjectActivity extends BaseActivity {
         noteField.setTextSize(15);
         noteField.setId(View.generateViewId());
         int size = project.getAllNotes().size();
-        for(int i = 0; i < size; i++)
-        {
-            noteField.append(project.getNote(i)+"\n");
+        for (int i = 0; i < size; i++) {
+            noteField.append(project.getNote(i) + "\n");
         }
 
         //size
@@ -398,14 +403,14 @@ public class ViewProjectActivity extends BaseActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ViewProjectActivity.this);
                 builder.setTitle("Add Counter");
                 View viewInflated = LayoutInflater.from(ViewProjectActivity.this).inflate(R.layout.pop_up, (ViewGroup) findViewById(android.R.id.content), false);
-                final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+                final EditText input = viewInflated.findViewById(R.id.input);
                 builder.setView(viewInflated);
 
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
-                        Counter counter = new Counter(input.getText().toString(), finalProject.getProjectName());
+                        Counter counter = new Counter(finalProject.getProjectName(), input.getText().toString());
                         updateCounterDB(counter);
                     }
                 });
@@ -497,8 +502,7 @@ public class ViewProjectActivity extends BaseActivity {
         main.addView(rel);
     }
 
-    public void updateDB(Project project)
-    {
+    public void updateDB(Project project) {
         DBHelper db = new DBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
@@ -521,8 +525,7 @@ public class ViewProjectActivity extends BaseActivity {
                 skeins, colorway, note, size);
     }
 
-    public void updateCounterDB(Counter counter)
-    {
+    public void updateCounterDB(Counter counter) {
         CounterDBHelper db = new CounterDBHelper(this);
         String projectName, counterName, ones, tens, hundreds;
 
@@ -536,17 +539,13 @@ public class ViewProjectActivity extends BaseActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1)
-        {
-            if(resultCode == RESULT_OK)
-            {
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
                 Bundle bundle = data.getExtras();
-                if(bundle != null)
-                {
+                if (bundle != null) {
                     Project project = bundle.getParcelable("project");
                     updateDB(project);
                     updateUI(project);

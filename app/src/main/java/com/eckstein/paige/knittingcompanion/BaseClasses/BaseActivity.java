@@ -1,15 +1,23 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.BaseClasses;
 
-        import android.content.Intent;
-        import android.os.Bundle;
-        import android.support.design.widget.NavigationView;
-        import android.support.v4.view.GravityCompat;
-        import android.support.v4.widget.DrawerLayout;
-        import android.support.v7.app.ActionBarDrawerToggle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.Menu;
-        import android.view.MenuItem;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.eckstein.paige.knittingcompanion.MainActivity;
+import com.eckstein.paige.knittingcompanion.R;
+import com.eckstein.paige.knittingcompanion.Stash.ViewStashActivity;
+import com.eckstein.paige.knittingcompanion.StoreSearchActivity;
+import com.eckstein.paige.knittingcompanion.Yarn.YarnSearchActivity;
+
+import com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity;
 
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -18,22 +26,22 @@ public class BaseActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -78,13 +86,15 @@ public class BaseActivity extends AppCompatActivity
         } else if (id == R.id.yarn) {
             Intent intent = new Intent(this, ViewStashActivity.class);
             startActivity(intent);
-        } else if (id == R.id.patterns) {
-
+        } else if (id == R.id.yarns) {
+            Intent intent = new Intent(this, YarnSearchActivity.class);
+            startActivity(intent);
         } else if (id == R.id.shops) {
-
+            Intent intent = new Intent(this, StoreSearchActivity.class);
+            startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

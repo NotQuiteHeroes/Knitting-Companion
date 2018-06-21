@@ -12,6 +12,7 @@
     <string name="yarn">My Stash</string>
     <string name="counters">My Counters</string>
     <string name="patterns">Pattern Search</string>
+    <string name="yarns">Yarn Search</string>
     <string name="shops">Local Yarn Shops</string>
     <string name="view">View</string>
     <string name="newProject">New Project</string>
@@ -32,6 +33,7 @@
     <string name="sizeLabel">Size:</string>
     <string name="done">Done</string>
     <string name="addCounter">Add Counter</string>
+    <string name="counter">Counter Name</string>
     <string name="counterHint">Counter name...</string>
     <string name="edit">Edit</string>
     <string name="addYarn">Add Yarn</string>
@@ -43,5 +45,35 @@
     <string name="yarnNameLabel">Yarn Name:</string>
     <string name="colorWayLabel">Colorway:</string>
     <string name="weightLabel">Yarn Weight:</string>
+    <string name="clear">Clear</string>
     <string name="fiberLabel">Fiber Content:</string>
+
+    <string name="API_username">read-aae90af42292601816162d0f20e0fabd</string>
+    <string name="API_password">ofusXuGjSDzHVaQ+pChZZ+wjOIzAby1W1QXwMFRM</string>
+
+    <string-array name="yarn_weights_array">
+        <item>Thread</item>
+        <item>Cobweb</item>
+        <item>Lace</item>
+        <item>Light Fingering</item>
+        <item>Fingering</item>
+        <item>Sport</item>
+        <item>DK</item>
+        <item>Worsted</item>
+        <item>Aran</item>
+        <item>Bulky</item>
+        <item>Super Bulky</item>
+        <item>Jumbo</item>
+    </string-array>
+
+    <string-array name="meters_yards_array">
+        <item>Yards</item>
+        <item>Meters</item>
+    </string-array>
+
+    <string name="yardage">Yardage:</string>
+    <string name="yardageHint">Yardage to search...</string>
+    <string name="search">Search</string>
+    <string name="priority">Prioritize free and popular projects?</string>
+    <string name="API_KEY">AIzaSyAo9jIsPuFufA7pu5Od6wV8CobitsI1Df8</string>
 </resources>

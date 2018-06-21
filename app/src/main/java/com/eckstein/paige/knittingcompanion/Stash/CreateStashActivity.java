@@ -1,40 +1,34 @@
-package com.eckstein.paige.knittingcompanion;
+package com.eckstein.paige.knittingcompanion.Stash;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.R;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 
-public class ViewYarnActivity extends BaseActivity {
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.StashDBHelper;
 
+public class CreateStashActivity extends BaseActivity {
     LinearLayout main;
     RelativeLayout rel;
-    Yarn yarn;
+    private String name, colorWay, weightString, fiberString;
+    private int yardsInt, skeinsInt;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
-        Bundle bundle = getIntent().getExtras();
-        yarn = bundle.getParcelable("yarn");
-
-        updateUI(yarn);
-    }
-
-    public void updateUI(Yarn yarn)
-    {
-        final Yarn finalYarn = yarn;
-
-        RelativeLayout rel = new RelativeLayout(this);
 
         //text fields ==============================================================================
         //yarn name label
@@ -45,10 +39,9 @@ public class ViewYarnActivity extends BaseActivity {
         yarnNameLabel.setText(getResources().getString(R.string.yarnNameLabel));
 
         //yarn name
-        TextView yarnName = new TextView(this);
+        final EditText yarnName = new EditText(this);
         yarnName.setTextSize(18);
         yarnName.setId(View.generateViewId());
-        yarnName.setText(yarn.getName());
 
         //colorway label
         TextView colorwayLabel = new TextView(this);
@@ -58,10 +51,9 @@ public class ViewYarnActivity extends BaseActivity {
         colorwayLabel.setText(getResources().getString(R.string.colorWayLabel));
 
         //colorway
-        TextView colorway = new TextView(this);
+        final EditText colorway = new EditText(this);
         colorway.setTextSize(18);
         colorway.setId(View.generateViewId());
-        colorway.setText(yarn.getColorway());
 
         //weight label
         TextView weightLabel = new TextView(this);
@@ -71,10 +63,9 @@ public class ViewYarnActivity extends BaseActivity {
         weightLabel.setText(getResources().getString(R.string.weightLabel));
 
         //weight
-        TextView weight = new TextView(this);
+        final EditText weight = new EditText(this);
         weight.setTextSize(18);
         weight.setId(View.generateViewId());
-        weight.setText(yarn.getWeight());
 
         //fiber label
         TextView fiberLabel = new TextView(this);
@@ -84,10 +75,9 @@ public class ViewYarnActivity extends BaseActivity {
         fiberLabel.setText(getResources().getString(R.string.fiberLabel));
 
         //fiber
-        TextView fiber = new TextView(this);
+        final EditText fiber = new EditText(this);
         fiber.setTextSize(18);
         fiber.setId(View.generateViewId());
-        fiber.setText(yarn.getFiber());
 
         //totalYards label
         TextView totalYardsLabel = new TextView(this);
@@ -97,10 +87,11 @@ public class ViewYarnActivity extends BaseActivity {
         totalYardsLabel.setText(getResources().getString(R.string.totalYardLabel));
 
         //totalYards
-        TextView totalYards = new TextView(this);
+        final EditText totalYards = new EditText(this);
         totalYards.setTextSize(18);
         totalYards.setId(View.generateViewId());
-        totalYards.setText(yarn.getTotalYards());
+        totalYards.setTypeface(getResources().getFont(R.font.mahoni));
+        totalYards.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         //total skeins label
         TextView totalSkeinsLabel = new TextView(this);
@@ -110,16 +101,11 @@ public class ViewYarnActivity extends BaseActivity {
         totalSkeinsLabel.setText(getResources().getString(R.string.skeinsLabel));
 
         //total skeins
-        TextView totalSkeins = new TextView(this);
+        final EditText totalSkeins = new EditText(this);
         totalSkeins.setTextSize(18);
         totalSkeins.setId(View.generateViewId());
-        totalSkeins.setText(yarn.getTotalSkeins());
-
-        Button editButton = new Button(this);
-        editButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
-        editButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
-        editButton.setText(getResources().getString(R.string.edit));
-        editButton.setId(View.generateViewId());
+        totalSkeins.setTypeface(getResources().getFont(R.font.mahoni));
+        totalSkeins.setInputType(InputType.TYPE_CLASS_NUMBER);
 
         //layout params ============================================================================
         //yarn name label
@@ -194,21 +180,6 @@ public class ViewYarnActivity extends BaseActivity {
         skeinsParams.setMargins(15, 10, 10, 10);
         totalSkeins.setLayoutParams(skeinsParams);
 
-        //edit button
-        RelativeLayout.LayoutParams editParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        editParams.addRule(RelativeLayout.BELOW, totalSkeins.getId());
-        editParams.setMargins(15, 10, 10, 10);
-        editButton.setLayoutParams(editParams);
-
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent projectData = new Intent(ViewYarnActivity.this, EditStashActivity.class);
-                projectData.putExtra("yarn", finalYarn);
-                startActivityForResult(projectData, 1);
-            }
-        });
-
         Button doneButton = new Button(this);
         doneButton.setTextColor(ContextCompat.getColor(this, R.color.offWhite));
         doneButton.setBackgroundColor(ContextCompat.getColor(this, R.color.darkPink));
@@ -216,15 +187,36 @@ public class ViewYarnActivity extends BaseActivity {
         doneButton.setId(View.generateViewId());
 
         RelativeLayout.LayoutParams doneParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        doneParams.addRule(RelativeLayout.BELOW, editButton.getId());
+        doneParams.addRule(RelativeLayout.BELOW, totalSkeins.getId());
         doneParams.setMargins(15, 10, 10, 10);
         doneButton.setLayoutParams(doneParams);
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent projectData = new Intent(ViewYarnActivity.this, MainActivity.class);
-                startActivity(projectData);
+                name = yarnName.getText().toString();
+                colorWay = colorway.getText().toString();
+                weightString = weight.getText().toString();
+                fiberString = fiber.getText().toString();
+                String temp = totalYards.getText().toString();
+                if (!temp.equals("")) {
+                    yardsInt = Integer.parseInt(temp);
+                } else {
+                    yardsInt = 0;
+                }
+                temp = totalSkeins.getText().toString();
+                if (!temp.equals("")) {
+                    skeinsInt = Integer.parseInt(temp);
+                } else {
+                    skeinsInt = 0;
+                }
+
+                Yarn yarn = new Yarn(name, colorWay, weightString, fiberString, yardsInt, skeinsInt);
+                updateDB(yarn);
+
+                Intent projectData = new Intent(CreateStashActivity.this, ViewStashActivity.class);
+                projectData.putExtra("yarn", yarn);
+                setResult(RESULT_OK, projectData);
                 finish();
             }
         });
@@ -241,12 +233,13 @@ public class ViewYarnActivity extends BaseActivity {
         rel.addView(totalYards);
         rel.addView(totalSkeinsLabel);
         rel.addView(totalSkeins);
-        rel.addView(editButton);
         rel.addView(doneButton);
+
+        main.addView(rel);
     }
 
-    public void updateDB(Yarn yarn)
-    {
+
+    public void updateDB(Yarn yarn) {
         StashDBHelper db = new StashDBHelper(this);
         String name, colorway, weight, fiber, yards, skeins;
 
@@ -257,26 +250,6 @@ public class ViewYarnActivity extends BaseActivity {
         yards = String.valueOf(yarn.getTotalYards());
         skeins = String.valueOf(yarn.getTotalSkeins());
 
-        db.updateStash(name, colorway, weight, fiber, yards, skeins);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == 1)
-        {
-            if(resultCode == RESULT_OK)
-            {
-                Bundle bundle = data.getExtras();
-                if(bundle != null)
-                {
-                    Yarn yarn = bundle.getParcelable("yarn");
-                    updateDB(yarn);
-                    updateUI(yarn);
-                }
-            }
-        }
+        db.insert(name, colorway, weight, fiber, yards, skeins);
     }
 }

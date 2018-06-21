@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.eckstein.paige.knittingcompanion">
 
+    <permission
+        android:name="com.eckstein.paige.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.eckstein.paige.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.sensor.accelerometer" android:required="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/knittingicon"
@@ -19,9 +30,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity"/>
-        <activity android:name=".ViewProjectActivity"/>
-        <activity android:name=".CreateProjectActivity"/>
+        <activity android:name=".BaseClasses.BaseActivity"/>
+        <activity android:name="com.eckstein.paige.knittingcompanion.Projects.ViewProjectActivity"/>
+        <activity android:name="com.eckstein.paige.knittingcompanion.Projects.CreateProjectActivity"/>
+        <activity android:name=".Stash.CreateStashActivity"/>
+        <activity android:name="com.eckstein.paige.knittingcompanion.Projects.EditProjectActivity"/>
+        <activity android:name=".Stash.EditStashActivity"/>
+        <activity android:name="com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity"/>
+        <activity android:name=".Stash.ViewStashActivity"/>
+        <activity android:name=".Yarn.ViewYarnActivity"/>
+        <activity android:name="com.eckstein.paige.knittingcompanion.Counters.CreateCounterActivity"/>
+        <activity android:name=".StoreSearchActivity"/>
+        <activity android:name=".BaseClasses.BaseActivity_Map"/>
+        <activity android:name=".Yarn.YarnSearchActivity"/>
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAo9jIsPuFufA7pu5Od6wV8CobitsI1Df8"/>
     </application>
 
 </manifest>
