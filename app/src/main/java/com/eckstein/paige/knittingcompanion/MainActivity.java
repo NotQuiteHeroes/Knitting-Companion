@@ -13,7 +13,7 @@ import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
 
 import java.util.ArrayList;
 
-import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.ProjectDBHelper;
 import com.eckstein.paige.knittingcompanion.Projects.CreateProjectActivity;
 import com.eckstein.paige.knittingcompanion.Projects.Project;
 import com.eckstein.paige.knittingcompanion.Projects.ViewProjectActivity;
@@ -29,7 +29,7 @@ public class MainActivity extends BaseActivity {
 
         allProjects = new ArrayList<>();
         main = findViewById(R.id.mainLayout);
-        DBHelper db = new DBHelper(this);
+        ProjectDBHelper db = new ProjectDBHelper(this);
         allProjects = db.getAllProjects();
 
         for (Project project : allProjects) {

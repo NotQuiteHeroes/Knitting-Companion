@@ -15,12 +15,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.ProjectDBHelper;
 import com.eckstein.paige.knittingcompanion.MainActivity;
 import com.eckstein.paige.knittingcompanion.R;
 
 import com.eckstein.paige.knittingcompanion.Counters.Counter;
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.CounterDBHelper;
-import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
 
 
 public class ViewProjectActivity extends BaseActivity {
@@ -503,7 +503,7 @@ public class ViewProjectActivity extends BaseActivity {
     }
 
     public void updateDB(Project project) {
-        DBHelper db = new DBHelper(this);
+        ProjectDBHelper db = new ProjectDBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
         String totalYards, yardsUsed, colorway;

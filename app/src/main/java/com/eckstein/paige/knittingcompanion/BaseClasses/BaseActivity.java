@@ -19,6 +19,10 @@ import com.eckstein.paige.knittingcompanion.Yarn.YarnSearchActivity;
 
 import com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity;
 
+/**
+ * Base Activity extended by all activities except StoreSearchActivity
+ * Used to hold navigation bar functionality/style
+ */
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 

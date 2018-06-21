@@ -44,7 +44,7 @@
         <activity android:name=".BaseClasses.BaseActivity_Map"/>
         <activity android:name=".Yarn.YarnSearchActivity"/>
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAo9jIsPuFufA7pu5Od6wV8CobitsI1Df8"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR KEY HERE"/>
     </application>
 
 </manifest>

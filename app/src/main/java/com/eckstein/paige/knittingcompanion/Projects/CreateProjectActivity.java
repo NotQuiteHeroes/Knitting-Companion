@@ -12,11 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.ProjectDBHelper;
 import com.eckstein.paige.knittingcompanion.MainActivity;
 import com.eckstein.paige.knittingcompanion.R;
 
-import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
-
+/**
+ * Activity to create new Project
+ */
 public class CreateProjectActivity extends BaseActivity {
 
     LinearLayout main;
@@ -306,6 +308,7 @@ public class CreateProjectActivity extends BaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get project information from text fields
                 startDate = startDateField.getText().toString();
                 endDate = endDateField.getText().toString();
                 patternName = patternNameField.getText().toString();
@@ -313,6 +316,7 @@ public class CreateProjectActivity extends BaseActivity {
                 projectName = projectNameField.getText().toString();
                 colorWay = colorWayField.getText().toString();
                 note = noteField.getText().toString();
+                //if any integer fields are empty, set them to 0
                 String temp = totalYardageField.getText().toString();
                 if (!temp.equals("")) {
                     totalYardage = Integer.parseInt(temp);
@@ -338,6 +342,7 @@ public class CreateProjectActivity extends BaseActivity {
                     size = 0;
                 }
 
+                //create new project and populate with retrieved information
                 Project project = new Project();
                 project.setStartDate(startDate);
                 project.setEndDate(endDate);
@@ -351,8 +356,10 @@ public class CreateProjectActivity extends BaseActivity {
                 project.setSkeins(totalSkeins);
                 project.setSize(size);
 
+                //add newly created project to database
                 updateDb(project);
 
+                //return new project object to View Project Activity
                 Intent projectData = new Intent(CreateProjectActivity.this, MainActivity.class);
                 projectData.putExtra("project", project);
                 setResult(RESULT_OK, projectData);
@@ -388,13 +395,18 @@ public class CreateProjectActivity extends BaseActivity {
 
     }
 
+    /**
+     * add newly created Project to Project database
+     * @param project
+     */
     public void updateDb(Project project) {
-        DBHelper db = new DBHelper(this);
+        ProjectDBHelper db = new ProjectDBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
         String totalYards, yardsUsed, colorway;
         String note, size, skeins;
 
+        //get project information
         projectName = project.getProjectName();
         patternName = project.getPatternName();
         yarnName = project.getYarnName();
@@ -407,6 +419,7 @@ public class CreateProjectActivity extends BaseActivity {
         size = String.valueOf(project.getSize());
         skeins = String.valueOf(project.getSkeins());
 
+        //insert new row
         db.insert(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
                 colorway, note, size);
     }

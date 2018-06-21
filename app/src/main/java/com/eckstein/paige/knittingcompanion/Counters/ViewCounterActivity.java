@@ -20,6 +20,9 @@ import java.util.ArrayList;
 
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.CounterDBHelper;
 
+/**
+ * Activity to view all current counters
+ */
 public class ViewCounterActivity extends BaseActivity {
 
     ArrayList<Counter> counters;
@@ -71,6 +74,10 @@ public class ViewCounterActivity extends BaseActivity {
         });
     }
 
+    /**
+     * what to do when sensor detects shake
+     * (clear all counters)
+     */
     public void handleShakeEvent() {
         for (Counter counter : counters) {
             counter.reset();
@@ -79,6 +86,10 @@ public class ViewCounterActivity extends BaseActivity {
         redraw();
     }
 
+    /**
+     * Add all counters to the UI
+     * @param counter Counter: Individual Counter object to add to UI
+     */
     public void updateUI(Counter counter) {
         final Counter finalCounter = counter;
         RelativeLayout rel = new RelativeLayout(this);
@@ -226,6 +237,10 @@ public class ViewCounterActivity extends BaseActivity {
         main.addView(v);
     }
 
+    /**
+     * keep database up to date with latest counter values
+     * @param counter Counter: Individual counter object to update in database
+     */
     public void updateCounterDB(Counter counter) {
         CounterDBHelper db = new CounterDBHelper(this);
         String projectName, counterName, ones, tens, hundreds;
@@ -239,6 +254,13 @@ public class ViewCounterActivity extends BaseActivity {
         db.updateCounter(projectName, counterName, ones, tens, hundreds);
     }
 
+    /**
+     * Result from CreateCounterActivity
+     * add newly created Counter object to UI
+     * @param requestCode Activity requestCode (called with 1)
+     * @param resultCode Activity resultCode(OK?)
+     * @param data Bundle data returned from CreateCounterActivity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -254,10 +276,18 @@ public class ViewCounterActivity extends BaseActivity {
         }
     }
 
+    /**
+     * remove all current views attached to main view
+     */
     public void clearViews() {
         main.removeAllViews();
     }
 
+    /**
+     * redraw UI
+     * get all up to date counters from database
+     * update UI with each one
+     */
     public void redraw() {
         CounterDBHelper db = new CounterDBHelper(this);
         counters = db.getAllCounters();
@@ -280,6 +310,9 @@ public class ViewCounterActivity extends BaseActivity {
         main.addView(newCounter);
     }
 
+    /**
+     * for sensor usage
+     */
     @Override
     public void onResume() {
         super.onResume();
@@ -287,6 +320,9 @@ public class ViewCounterActivity extends BaseActivity {
         mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
+    /**
+     * for sensor usage
+     */
     @Override
     public void onPause() {
         // Add the following line to unregister the Sensor Manager onPause

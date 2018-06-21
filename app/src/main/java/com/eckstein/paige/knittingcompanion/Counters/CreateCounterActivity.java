@@ -9,12 +9,16 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
 import com.eckstein.paige.knittingcompanion.R;
 
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.CounterDBHelper;
 
+/**
+ * Activity for creating new counter
+ */
 public class CreateCounterActivity extends BaseActivity {
 
     LinearLayout main;
@@ -28,23 +32,27 @@ public class CreateCounterActivity extends BaseActivity {
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
 
+        //project name label
         TextView projectNameLabel = new TextView(this);
         projectNameLabel.setTextSize(20);
         projectNameLabel.setId(View.generateViewId());
         projectNameLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
         projectNameLabel.setText(getResources().getString(R.string.projectNameLabel));
 
+        //project name field
         final EditText projectNameField = new EditText(this);
         projectNameField.setTextSize(18);
         projectNameField.setId(View.generateViewId());
         projectNameField.setHint(getResources().getString(R.string.projectName));
 
+        //counter name label
         TextView counterLabel = new TextView(this);
         counterLabel.setTextSize(20);
         counterLabel.setId(View.generateViewId());
         counterLabel.setTextColor(ContextCompat.getColor(this, R.color.darkPink));
         counterLabel.setText(getResources().getString(R.string.counter));
 
+        //counter name field
         final EditText counterNameField = new EditText(this);
         counterNameField.setTextSize(18);
         counterNameField.setId(View.generateViewId());
@@ -81,6 +89,11 @@ public class CreateCounterActivity extends BaseActivity {
                 projectName = projectNameField.getText().toString();
                 counterName = counterNameField.getText().toString();
 
+                if(projectName.equals(""))
+                {
+                    makeToast("Please provide name of project for counter.");
+                    return;
+                }
                 Counter counter = new Counter(projectName, counterName);
 
                 updateDb(counter);
@@ -102,8 +115,21 @@ public class CreateCounterActivity extends BaseActivity {
         main.addView(doneButton);
     }
 
+    /**
+     * add new counter to database
+     * @param counter Counter: newly created Counter object to add to database
+     */
     public void updateDb(Counter counter) {
         CounterDBHelper db = new CounterDBHelper(this);
         db.insert(projectName, counterName, "0", "0", "0");
+    }
+
+    /**
+     * display message to user
+     * @param text String: message to display to user
+     */
+    public void makeToast(String text) {
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_LONG);
+        toast.show();
     }
 }

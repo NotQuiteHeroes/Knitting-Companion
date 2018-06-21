@@ -12,11 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
+import com.eckstein.paige.knittingcompanion.DatabaseHelpers.ProjectDBHelper;
 import com.eckstein.paige.knittingcompanion.MainActivity;
 import com.eckstein.paige.knittingcompanion.R;
 
-import com.eckstein.paige.knittingcompanion.DatabaseHelpers.DBHelper;
-
+/**
+ * Activity to edit existing Project
+ */
 public class EditProjectActivity extends BaseActivity {
 
     LinearLayout main;
@@ -36,6 +38,7 @@ public class EditProjectActivity extends BaseActivity {
         rel = new RelativeLayout(this);
 
         Bundle bundle = getIntent().getExtras();
+        //get project to edit
         project = bundle.getParcelable("project");
 
         //Project Headers ==========================================================================
@@ -310,6 +313,7 @@ public class EditProjectActivity extends BaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get data from text fields
                 startDate = startDateField.getText().toString();
                 endDate = endDateField.getText().toString();
                 patternName = patternNameField.getText().toString();
@@ -318,6 +322,7 @@ public class EditProjectActivity extends BaseActivity {
                 colorWay = colorWayField.getText().toString();
                 note = noteField.getText().toString();
                 String temp = totalYardageField.getText().toString();
+                //if any int fields are empty, set to 0
                 if (!temp.equals("")) {
                     totalYardage = Integer.parseInt(temp);
                 } else {
@@ -342,6 +347,7 @@ public class EditProjectActivity extends BaseActivity {
                     size = 0;
                 }
 
+                //create project object and populate with retrieved information
                 Project project = new Project();
                 project.setStartDate(startDate);
                 project.setEndDate(endDate);
@@ -355,8 +361,10 @@ public class EditProjectActivity extends BaseActivity {
                 project.setSkeins(totalSkeins);
                 project.setSize(size);
 
+                //update database with edited Project
                 updateDb(project);
 
+                //return edited project to view project activity
                 Intent projectData = new Intent(EditProjectActivity.this, MainActivity.class);
                 projectData.putExtra("project", project);
                 setResult(RESULT_OK, projectData);
@@ -392,13 +400,18 @@ public class EditProjectActivity extends BaseActivity {
 
     }
 
+    /**
+     * update row in project database for edited project
+     * @param project Project object that was edited
+     */
     public void updateDb(Project project) {
-        DBHelper db = new DBHelper(this);
+        ProjectDBHelper db = new ProjectDBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
         String totalYards, yardsUsed, colorway;
         String note, size, skeins;
 
+        //get project information
         projectName = project.getProjectName();
         patternName = project.getPatternName();
         yarnName = project.getYarnName();
@@ -411,6 +424,7 @@ public class EditProjectActivity extends BaseActivity {
         size = String.valueOf(project.getSize());
         skeins = String.valueOf(project.getSkeins());
 
+        //update row with edited project information
         db.updateProject(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
                 colorway, note, size);
     }

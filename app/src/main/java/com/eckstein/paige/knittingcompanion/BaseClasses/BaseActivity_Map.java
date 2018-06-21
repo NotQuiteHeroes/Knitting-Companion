@@ -19,6 +19,11 @@ import com.eckstein.paige.knittingcompanion.Yarn.YarnSearchActivity;
 
 import com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity;
 
+/**
+ * BaseActivity_Map extended by StoreSearchActivity
+ * holds navigation bar functionality, but rather than scroll view (Like BaseActivity)
+ * this includes a fragment for use with map
+ */
 public class BaseActivity_Map extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
