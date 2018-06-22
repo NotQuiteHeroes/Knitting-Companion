@@ -2,13 +2,17 @@ package com.eckstein.paige.knittingcompanion.Utilities;
 
 import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 
+/**
+ * Handles result of Yarn search through Ravelry API
+ * Credit to Sofivanhanen and her code, from which this was edited
+ * From https://github.com/sofivanhanen/Yarnie
+ */
 public class YarnSearchResult {
 
     // The getYarns query (/yarns/search.json) returns this object
 
     private Yarn[] yarns;
     private Object paginator;
-    // TODO: Create the paginator class
 
     public Yarn[] getYarns() {
         return yarns;

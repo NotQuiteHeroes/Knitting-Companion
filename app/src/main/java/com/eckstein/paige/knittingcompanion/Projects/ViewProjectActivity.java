@@ -22,7 +22,9 @@ import com.eckstein.paige.knittingcompanion.R;
 import com.eckstein.paige.knittingcompanion.Counters.Counter;
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.CounterDBHelper;
 
-
+/**
+ * Activity to get in depth view of individual project
+ */
 public class ViewProjectActivity extends BaseActivity {
 
     LinearLayout main;
@@ -34,12 +36,19 @@ public class ViewProjectActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
+        //get intent data from MainActivity
         Bundle bundle = getIntent().getExtras();
+        //get project sent through data
         project = bundle.getParcelable("project");
 
+        //update UI for specified project
         updateUI(project);
     }
 
+    /**
+     * Programmatically set up UI
+     * @param project
+     */
     public void updateUI(Project project) {
         final Project finalProject = project;
         //Project Headers ==========================================================================
@@ -502,13 +511,19 @@ public class ViewProjectActivity extends BaseActivity {
         main.addView(rel);
     }
 
+    /**
+     * Update database with project if it was edited
+     * @param project Project object that was edited
+     */
     public void updateDB(Project project) {
+        //Project fields
         ProjectDBHelper db = new ProjectDBHelper(this);
         String projectName, patternName, yarnName;
         String start, end;
         String totalYards, yardsUsed, colorway;
         String note, size, skeins;
 
+        //get project fields
         projectName = project.getProjectName();
         patternName = project.getPatternName();
         yarnName = project.getYarnName();
@@ -521,33 +536,52 @@ public class ViewProjectActivity extends BaseActivity {
         size = String.valueOf(project.getSize());
         skeins = String.valueOf(project.getSkeins());
 
+        //update project in database
         db.updateProject(projectName, patternName, yarnName, start, end, totalYards, yardsUsed,
                 skeins, colorway, note, size);
     }
 
+    /**
+     * Update Counter database if new counter was created
+     * @param counter newly created counter object
+     */
     public void updateCounterDB(Counter counter) {
+        //counter fields
         CounterDBHelper db = new CounterDBHelper(this);
         String projectName, counterName, ones, tens, hundreds;
 
+        //get counter information
         projectName = counter.getProjectName();
         counterName = counter.getName();
         ones = String.valueOf(counter.getOnes());
         tens = String.valueOf(counter.getTens());
         hundreds = String.valueOf(counter.getHundreds());
 
-        db.updateCounter(projectName, counterName, ones, tens, hundreds);
+        //add new counter to database
+        db.insert(projectName, counterName, ones, tens, hundreds);
     }
 
+    /**
+     * On result from edit project activity
+     * @param requestCode Int request code (1)
+     * @param resultCode Int result code (RESULT OK)
+     * @param data Intent data returned from edit project activity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //if all was successful
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                //get bundle from intent
                 Bundle bundle = data.getExtras();
                 if (bundle != null) {
+                    //get Project from bundle
                     Project project = bundle.getParcelable("project");
+                    //update database with edited project
                     updateDB(project);
+                    //update text fields with edited project
                     updateUI(project);
                 }
             }

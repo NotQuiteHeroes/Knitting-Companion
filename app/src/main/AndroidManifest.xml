@@ -38,7 +38,7 @@
         <activity android:name=".Stash.EditStashActivity"/>
         <activity android:name="com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity"/>
         <activity android:name=".Stash.ViewStashActivity"/>
-        <activity android:name=".Yarn.ViewYarnActivity"/>
+        <activity android:name=".Stash.ViewYarnActivity"/>
         <activity android:name="com.eckstein.paige.knittingcompanion.Counters.CreateCounterActivity"/>
         <activity android:name=".StoreSearchActivity"/>
         <activity android:name=".BaseClasses.BaseActivity_Map"/>

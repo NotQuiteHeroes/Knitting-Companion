@@ -32,6 +32,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * Activity to find yarn shops nearby the user
+ * finds user's location
+ * searches for nearby stores by "yarn" tag
+ * places markers for each store found
+ */
 public class StoreSearchActivity extends BaseActivity_Map implements LocationListener {
 
     FrameLayout main;
@@ -48,16 +54,16 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
     @Override
     public void onCreate(Bundle onSavedInstance) {
         super.onCreate(onSavedInstance);
-        //setContentView(R.layout.activity_map);
 
         main = findViewById(R.id.mainFrame);
         map = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapContainer);
 
+        //initialize map
         map.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap gMap) {
                 googleMap = gMap;
-//check in case map/ Google Play services not available
+                //check in case map/ Google Play services not available
                 if (googleMap != null) {
                     //ok - proceed
                     googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -65,18 +71,21 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
                     placeMarkers = new Marker[MAX_PLACES];
                     //update location
                     locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+                    //check permissions for location access
                     if (ContextCompat.checkSelfPermission(StoreSearchActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                             || ContextCompat.checkSelfPermission(StoreSearchActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        //get user's location
                         locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, StoreSearchActivity.this);
                     }
                 }
             }
         });
-
-        //((ViewGroup)map.getParent()).removeView(map);
-        //main.addView(map);
     }
 
+    /**
+     * if user's location changes
+     * @param location Location of user
+     */
     @Override
     public void onLocationChanged(Location location) {
         Log.v("MyMapActivity", "location changed");
@@ -99,18 +108,21 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
         Log.v("MyMapActivity", "status changed");
     }
 
-    /*
-     * update the place markers
+    /**
+     * update markers for stores
      */
     private void updatePlaces() {
         //get location manager
         //get last location
         Location lastLoc = null;
 
+        //check permissions for user location
         if (ContextCompat.checkSelfPermission(StoreSearchActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
                 || ContextCompat.checkSelfPermission(StoreSearchActivity.this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            //get last known location of user
             lastLoc = locMan.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         }
+        //user's last known location as Lat and Long coordinates
         double lat = lastLoc.getLatitude();
         double lng = lastLoc.getLongitude();
         //create LatLng
@@ -137,6 +149,10 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
         new GetPlaces().execute(placesSearchStr);
     }
 
+    /**
+     * query to find yarn stores nearby the user
+     * runs on async thread
+     */
     private static class GetPlaces extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... placesURL) {
@@ -145,13 +161,14 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
             StringBuilder placesBuilder = new StringBuilder();
             for (String placeSearchURL : placesURL) {
                 try {
-
+                    //connect
                     URL requestUrl = new URL(placeSearchURL);
                     HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
                     connection.setRequestMethod("GET");
                     connection.connect();
                     int responseCode = connection.getResponseCode();
 
+                    //if successful connection, get yarn stores information
                     if (responseCode == HttpURLConnection.HTTP_OK) {
 
                         BufferedReader reader = null;
@@ -198,7 +215,7 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
             try {
                 //parse JSON
 
-                //create JSONObject, pass stinrg returned from doInBackground
+                //create JSONObject, pass string returned from doInBackground
                 JSONObject resultObject = new JSONObject(result);
                 //get "results" array
                 JSONArray placesArray = resultObject.getJSONArray("results");
@@ -256,6 +273,7 @@ public class StoreSearchActivity extends BaseActivity_Map implements LocationLis
 
                     if (places[p] != null) {
 
+                        //put markers on map
                         placeMarkers[p] = googleMap.addMarker(places[p]);
                     }
                 }

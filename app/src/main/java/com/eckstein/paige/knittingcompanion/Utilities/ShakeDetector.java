@@ -5,7 +5,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-
+/**
+ * Shake Detector used to detect phone shaking
+ * used by ViewCounterActivity - shaking will clear all counters
+ */
 public class ShakeDetector implements SensorEventListener {
 
     /*
@@ -36,6 +39,7 @@ public class ShakeDetector implements SensorEventListener {
         // ignore
     }
 
+    //detect shake
     @Override
     public void onSensorChanged(SensorEvent event) {
 

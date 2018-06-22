@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
 import com.eckstein.paige.knittingcompanion.R;
-import com.eckstein.paige.knittingcompanion.Yarn.Yarn.ViewYarnActivity;
 import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 
 import java.util.ArrayList;
 
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.StashDBHelper;
 
+/**
+ * View short form of all yarn saved in stash
+ * shows name and colorway
+ */
 public class ViewStashActivity extends BaseActivity {
 
     ArrayList<Yarn> stash;
@@ -27,11 +30,14 @@ public class ViewStashActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //ArrayList to hold all yarn objects in stash
         stash = new ArrayList<>();
         main = findViewById(R.id.mainLayout);
         StashDBHelper db = new StashDBHelper(this);
+        //get all yarn objects saved in database
         stash = db.getAllYarn();
 
+        //for each yarn object, add it to the UI
         for (Yarn yarn : stash) {
             updateUI(yarn);
         }
@@ -43,6 +49,7 @@ public class ViewStashActivity extends BaseActivity {
         newYarn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //go to create stash activity to create a new Yarn object
                 Intent intent = new Intent(ViewStashActivity.this, CreateStashActivity.class);
                 startActivityForResult(intent, 1);
             }
@@ -50,15 +57,25 @@ public class ViewStashActivity extends BaseActivity {
         main.addView(newYarn);
     }
 
+    /**
+     * On result from CreateStashActivity
+     * @param requestCode int: request code (1)
+     * @param resultCode int: resultCode (RESULT_OK)
+     * @param data Intent: hold data returning from Create Stash Activity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //if all was successful
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                //get bundle from Intent
                 Bundle bundle = data.getExtras();
                 if (bundle != null) {
+                    //get Yarn object from bundle
                     Yarn yarn = bundle.getParcelable("yarn");
+                    //add it to the UI
                     updateUI(yarn);
                 }
             }
@@ -104,6 +121,7 @@ public class ViewStashActivity extends BaseActivity {
         viewProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //view in depth yarn information
                 Intent intent = new Intent(ViewStashActivity.this, ViewYarnActivity.class);
                 intent.putExtra("yarn", finalYarn);
                 startActivity(intent);

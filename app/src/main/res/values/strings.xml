@@ -49,7 +49,7 @@
     <string name="fiberLabel">Fiber Content:</string>
 
     <string name="API_username">API username</string>
-    <string name="API_password">API password/string>
+    <string name="API_password">API password</string>
 
     <string-array name="yarn_weights_array">
         <item>Thread</item>

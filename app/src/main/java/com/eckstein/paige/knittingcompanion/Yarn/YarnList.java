@@ -7,10 +7,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Used to create List of Yarn objects returned from Ravelry search
+ * Credit to Sofivanhanen and her code, from which this was edited
+ * From https://github.com/sofivanhanen/Yarnie
+ */
 public class YarnList implements List<Yarn> {
     private Yarn[] yarns;
     private int firstFreeSpot;
 
+    /**
+     * Default constructor
+     * create array that can hold 20 Yarn objects
+     */
     public YarnList() {
         yarns = new Yarn[20];
         firstFreeSpot = 0;

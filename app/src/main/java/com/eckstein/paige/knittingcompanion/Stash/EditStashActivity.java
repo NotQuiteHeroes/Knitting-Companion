@@ -32,6 +32,7 @@ public class EditStashActivity extends BaseActivity {
         main = findViewById(R.id.mainLayout);
         rel = new RelativeLayout(this);
 
+        //get Yarn object to edit from View Stash Activity
         Bundle bundle = getIntent().getExtras();
         yarn = bundle.getParcelable("yarn");
 
@@ -203,11 +204,13 @@ public class EditStashActivity extends BaseActivity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //get edited yarn information from text fields
                 name = yarnName.getText().toString();
                 colorWay = colorway.getText().toString();
                 weightString = weight.getText().toString();
                 fiberString = fiber.getText().toString();
                 String temp = totalYards.getText().toString();
+                //if any int fields are empty, set to 0
                 if (!temp.equals("")) {
                     yardsInt = Integer.parseInt(temp);
                 } else {
@@ -220,9 +223,12 @@ public class EditStashActivity extends BaseActivity {
                     skeinsInt = 0;
                 }
 
+                //create yarn object from retrieved information
                 Yarn yarn = new Yarn(name, colorWay, weightString, fiberString, yardsInt, skeinsInt);
+                //update Yarn object in database
                 updateDB(yarn);
 
+                //return edited yarn object to ViewStashActivity
                 Intent projectData = new Intent(EditStashActivity.this, ViewStashActivity.class);
                 projectData.putExtra("yarn", yarn);
                 setResult(RESULT_OK, projectData);
@@ -247,11 +253,16 @@ public class EditStashActivity extends BaseActivity {
         main.addView(rel);
     }
 
-
+    /**
+     * update edited yarn object in database
+     * @param yarn edited Yarn object to update
+     */
     public void updateDB(Yarn yarn) {
+        //yarn fields
         StashDBHelper db = new StashDBHelper(this);
         String name, colorway, weight, fiber, yards, skeins;
 
+        //get yarn fields
         name = yarn.getName();
         colorway = yarn.getColorway();
         weight = yarn.getWeight();
@@ -259,6 +270,7 @@ public class EditStashActivity extends BaseActivity {
         yards = String.valueOf(yarn.getTotalYards());
         skeins = String.valueOf(yarn.getTotalSkeins());
 
+        //update row in database
         db.updateStash(name, colorway, weight, fiber, yards, skeins);
     }
 }

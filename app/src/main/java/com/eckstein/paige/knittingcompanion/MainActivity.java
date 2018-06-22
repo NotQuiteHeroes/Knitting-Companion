@@ -18,6 +18,10 @@ import com.eckstein.paige.knittingcompanion.Projects.CreateProjectActivity;
 import com.eckstein.paige.knittingcompanion.Projects.Project;
 import com.eckstein.paige.knittingcompanion.Projects.ViewProjectActivity;
 
+/**
+ * Main activity shows shortened information for all projects created by user
+ * includes project name and pattern name
+ */
 public class MainActivity extends BaseActivity {
 
     ArrayList<Project> allProjects;
@@ -30,8 +34,10 @@ public class MainActivity extends BaseActivity {
         allProjects = new ArrayList<>();
         main = findViewById(R.id.mainLayout);
         ProjectDBHelper db = new ProjectDBHelper(this);
+        //get all projects from database
         allProjects = db.getAllProjects();
 
+        //add each project to the UI
         for (Project project : allProjects) {
             updateUI(project);
         }
@@ -44,6 +50,7 @@ public class MainActivity extends BaseActivity {
         newProject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //start activity to create new Project
                 Intent intent = new Intent(MainActivity.this, CreateProjectActivity.class);
                 startActivityForResult(intent, 1);
             }
@@ -52,21 +59,35 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    /**
+     * On result from create Project activity
+     * @param requestCode int: request code (1)
+     * @param resultCode int: result code (RESULT_OK)
+     * @param data Intent: data returned from create project activity
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //if all was successful
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
+                //get bundle from intent
                 Bundle bundle = data.getExtras();
                 if (bundle != null) {
+                    //get new project from bundle
                     Project project = bundle.getParcelable("project");
+                    //add it to the UI
                     updateUI(project);
                 }
             }
         }
     }
 
+    /**
+     * add project to UI
+     * @param project Project object to be added to UI
+     */
     public void updateUI(Project project) {
         final Project finalProject = project;
 

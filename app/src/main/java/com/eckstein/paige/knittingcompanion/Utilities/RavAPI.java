@@ -5,19 +5,20 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
+/**
+ * Ravelry API queries
+ * Credit to Sofivanhanen and her code, from which this was edited
+ * From https://github.com/sofivanhanen/Yarnie
+ */
 public interface RavAPI {
 
-    int MAX_NUMBER_OF_PATTERNS = 50;
-    int NUMBER_OF_COLORS = 1;
-
-    // This query "/patterns/search.json" can be used just like the Ravelry pattern search,
-    // adding in any parameters. This specific call defines number of colors, number of patterns wanted,
-    // and the yarn weight required.
+    // This query "/yarns/search.json" can be used just like the Ravelry yarn search,
+    // adding in any parameters. This specific call defines name of yarn to search for
     @GET("/yarns/search.json")
     Call<YarnSearchResult> getYarns(@Query("query") String yarnName,
                                     @Header("Authorization") String authHeader);
 
-    // This query returns detailed Pattern objects.
+    // This query returns detailed Yarn objects.
     // ids should be in form "1 2 3 4", here it is parsed to "1+2+3+4"
     @GET("/yarns.json")
     Call<FullYarnsResult> getYarnsById(@Query("ids") String ids,

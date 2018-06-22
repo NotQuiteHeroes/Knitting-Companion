@@ -1,4 +1,4 @@
-package com.eckstein.paige.knittingcompanion.Yarn;
+package com.eckstein.paige.knittingcompanion.Stash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 import com.eckstein.paige.knittingcompanion.BaseClasses.BaseActivity;
 import com.eckstein.paige.knittingcompanion.MainActivity;
 import com.eckstein.paige.knittingcompanion.R;
-import com.eckstein.paige.knittingcompanion.Stash.EditStashActivity;
 
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.StashDBHelper;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 
 public class ViewYarnActivity extends BaseActivity {
 

@@ -24,6 +24,11 @@ import com.eckstein.paige.knittingcompanion.Utilities.GetDetailedYarnsTask;
 import com.eckstein.paige.knittingcompanion.Utilities.GetYarnsTask;
 import com.eckstein.paige.knittingcompanion.Utilities.YarnSearchResult;
 
+/**
+ * Activity to search for Yarn through Ravelry
+ * Credit to Sofivanhanen and her code, from which this was edited
+ * From https://github.com/sofivanhanen/Yarnie
+ */
 public class YarnSearchActivity extends BaseActivity {
 
     LinearLayout main;
@@ -92,10 +97,11 @@ public class YarnSearchActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (task != null) return; // There's a task running already.
+                //get name of yarn to search for
                 String name = yarnNameField.getText().toString();
                 if (name.equals("")) {
                     // User didn't input amount of yarn!
-                    makeToast("Please give amount of yarn");
+                    makeToast("Please give name of yarn");
                     return;
                 }
                 // Start the API request
@@ -154,19 +160,19 @@ public class YarnSearchActivity extends BaseActivity {
     }
 
     // handleResult is only called after a successful query.
-    // GetPatternsTask returns PatternsSearchResult.
+    // GetYarnsTask returns YarnSearchResult.
     public void handleResult(YarnSearchResult result) {
-        // GetPatternsTask is useful for looking up projects by parameters.
-        // However, the results are insufficient Pattern objects.
+        // GetYarnsTask is useful for looking up yarns by parameters.
+        // However, the results are insufficient Yarn objects.
         // They do not contain all the details (for instance, the yardage.)
-        // Therefore, we request new, detailed versions of those patterns,
+        // Therefore, we request new, detailed versions of those yarns,
         // searching by id.
         // This is a weakness in the Ravelry API.
         task = new GetDetailedYarnsTask(this, result.getIdsAsString());
         task.execute();
     }
 
-    // GetDetailedPatternsTask returns FullPatternsResult.
+    // GetDetailedYarnsTask returns FullYarnsResult.
     public void handleResult(FullYarnsResult result) {
         // We run the algorithm on a separate thread so as to not block the UI.
 
@@ -176,17 +182,21 @@ public class YarnSearchActivity extends BaseActivity {
         task.execute();
     }
 
-    // AlgorithmWeightOnlyTask returns a list of patterns.
+    // AlgorithmWeightOnlyTask returns a list of yarns.
     public void handleResult(YarnList result) {
         progressBar.setVisibility(View.GONE);
         printListOfPatterns(result);
         task = null;
     }
 
+    /**
+     * print all yarn information returned by Ravelry search
+     * @param yarns List of Yarn objects returned by Ravelry search
+     */
     private void printListOfPatterns(YarnList yarns) {
         StringBuilder string = new StringBuilder();
         if (yarns.isEmpty()) {
-            string.append("No patterns! Try increasing the amount of yarn.");
+            string.append("No yarns! Try a different name.");
         } else {
             for (Yarn yarn : yarns) {
                 string.append(yarn.getCompanyName() + "\n");

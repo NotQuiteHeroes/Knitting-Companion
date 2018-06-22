@@ -16,6 +16,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Perform Yarn search through Ravelry API
+ * Credit to Sofivanhanen and her code, from which this was edited
+ * From https://github.com/sofivanhanen/Yarnie
+ */
 public class GetDetailedYarnsTask extends AsyncTask {
 
     // Context to affect UI (show toasts, show/hide progress bar etc.)
@@ -71,7 +76,7 @@ public class GetDetailedYarnsTask extends AsyncTask {
     protected void onPostExecute(Object result) {
         if (result == null || !result.getClass().equals(FullYarnsResult.class)) {
             context.handleFailedAsyncTask();
-            Log.e(this.getClass().toString(), "Result was not a FullPatternsResult object!");
+            Log.e(this.getClass().toString(), "Result was not a FullYarnsResult object!");
         } else {
             context.handleResult((FullYarnsResult) result);
         }
