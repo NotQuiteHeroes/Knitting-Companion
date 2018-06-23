@@ -3,6 +3,8 @@ package com.eckstein.paige.knittingcompanion.Projects;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
+
 import java.util.ArrayList;
 
 /**
@@ -13,11 +15,14 @@ import java.util.ArrayList;
  */
 public class Project implements Parcelable {
     private String startDate, endDate;
-    private String patternName, yarnName, projectName;
-    private int totalYardage, yardageUsed, totalSkeins;
-    private String colorWay, note;
+    private String patternName, projectName;
+    private int yardageUsed;
+    private String note;
     private float size;
     private ArrayList<String> notes;
+    private Yarn yarn;
+    private float needleSize;
+    private String needleSizeType;
 
     /**
      * Default constructor - set all values to empty
@@ -26,15 +31,14 @@ public class Project implements Parcelable {
         startDate = "--/--/--";
         endDate = "--/--/--";
         patternName = "";
-        yarnName = "";
         projectName = "";
-        totalYardage = 0;
         yardageUsed = 0;
-        colorWay = "";
         note = "";
         size = 0;
-        totalSkeins = 0;
         notes = new ArrayList<>();
+        yarn = new Yarn();
+        needleSize = 0;
+        needleSizeType = "US";
     }
 
     /**
@@ -50,22 +54,24 @@ public class Project implements Parcelable {
      * @param note String: project note
      * @param size float: size made
      * @param totalSkeins int: total number of skeins used
+     * @param weight string: yarn weight category
+     * @param fiber string: yarn fiber content
      */
     public Project(String startDate, String endDate, String patternName, String projectName,
             String yarnName, int totalYardage, int yardageUsed, String colorway, String note,
-            float size, int totalSkeins) {
+            float size, int totalSkeins, String weight, String fiber, float needleSize, String
+                   needleSizeType) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.patternName = patternName;
         this.projectName = projectName;
-        this.yarnName = yarnName;
-        this.totalYardage = totalYardage;
         this.yardageUsed = yardageUsed;
-        this.colorWay = colorway;
         this.note = note;
         this.size = size;
-        this.totalSkeins = totalSkeins;
         notes = new ArrayList<>();
+        yarn = new Yarn(yarnName, colorway, weight, fiber, totalYardage, totalSkeins);
+        this.needleSize = needleSize;
+        this.needleSizeType = needleSizeType;
     }
 
     /**
@@ -97,7 +103,7 @@ public class Project implements Parcelable {
      * @return String: name of yarn used in project
      */
     public String getYarnName() {
-        return yarnName;
+        return yarn.getName();
     }
 
     /**
@@ -113,7 +119,7 @@ public class Project implements Parcelable {
      * @return String: colorway of yarn used in project
      */
     public String getColorWay() {
-        return colorWay;
+        return yarn.getColorway();
     }
 
     /**
@@ -121,7 +127,7 @@ public class Project implements Parcelable {
      * @return int: total yards per skein
      */
     public int getTotalYardage() {
-        return totalYardage;
+        return yarn.getTotalYards();
     }
 
     /**
@@ -167,7 +173,43 @@ public class Project implements Parcelable {
      * @return int: total number of skeins used in project
      */
     public int getSkeins() {
-        return totalSkeins;
+        return yarn.getTotalSkeins();
+    }
+
+    /**
+     * getter for yarn weight category
+     * @return yarn weight category (worsted, aran, etc.)
+     */
+    public String getWeight()
+    {
+        return yarn.getWeight();
+    }
+
+    /**
+     * getter for yarn fiber content
+     * @return fiber content for yarn
+     */
+    public String getFiber()
+    {
+        return yarn.getFiber();
+    }
+
+    /**
+     * getter for needle size
+     * @return float: size of needle used for project
+     */
+    public float getNeedleSize()
+    {
+        return needleSize;
+    }
+
+    /**
+     * getter for needle size type
+     * @return String: sizing style for needles (US or Metric)
+     */
+    public String getNeedleSizeType()
+    {
+        return needleSizeType;
     }
 
     /**
@@ -196,10 +238,10 @@ public class Project implements Parcelable {
 
     /**
      * setter for yarn name
-     * @param yarn String: name of yarn used in project
+     * @param name String: name of yarn used in project
      */
-    public void setYarnName(String yarn) {
-        yarnName = yarn;
+    public void setYarnName(String name) {
+        yarn.setName(name);
     }
 
     /**
@@ -215,7 +257,7 @@ public class Project implements Parcelable {
      * @param yards int: total yards per skein
      */
     public void setTotalYardage(int yards) {
-        totalYardage = yards;
+        yarn.setTotalYards(yards);
     }
 
     /**
@@ -231,7 +273,7 @@ public class Project implements Parcelable {
      * @param colorway String: colorway of yarn used in project
      */
     public void setColorWay(String colorway) {
-        colorWay = colorway;
+        yarn.setColorway(colorway);
     }
 
     /**
@@ -255,7 +297,43 @@ public class Project implements Parcelable {
      * @param skeins int: total number of skeins used in project
      */
     public void setSkeins(int skeins) {
-        totalSkeins = skeins;
+        yarn.setTotalSkeins(skeins);
+    }
+
+    /**
+     * setter for yarn weight category
+     * @param weight String: yarn weight category (Aran, worsted, etc.)
+     */
+    public void setWeight(String weight)
+    {
+        yarn.setWeight(weight);
+    }
+
+    /**
+     * setter for yarn fiber content
+     * @param fiber String: fiber content of yarn
+     */
+    public void setFiber(String fiber)
+    {
+        yarn.setFiber(fiber);
+    }
+
+    /**
+     * setter for needle size
+     * @param size float: size of needle used for project
+     */
+    public void setNeedleSize(float size)
+    {
+        needleSize = size;
+    }
+
+    /**
+     * setter for needle size type
+     * @param type String: style of sizing (US or Metric)
+     */
+    public void setNeedleSizeType(String type)
+    {
+        needleSizeType = type;
     }
 
     /**
@@ -277,13 +355,17 @@ public class Project implements Parcelable {
         dest.writeString(startDate);
         dest.writeString(endDate);
         dest.writeString(patternName);
-        dest.writeString(yarnName);
+        dest.writeString(yarn.getName());
         dest.writeString(projectName);
-        dest.writeInt(totalYardage);
+        dest.writeInt(yarn.getTotalYards());
         dest.writeInt(yardageUsed);
-        dest.writeString(colorWay);
+        dest.writeString(yarn.getColorway());
         dest.writeFloat(size);
         dest.writeList(notes);
+        dest.writeString(yarn.getWeight());
+        dest.writeString(yarn.getFiber());
+        dest.writeFloat(needleSize);
+        dest.writeString(needleSizeType);
 
     }
 
@@ -296,13 +378,17 @@ public class Project implements Parcelable {
         this.startDate = in.readString();
         this.endDate = in.readString();
         this.patternName = in.readString();
-        this.yarnName = in.readString();
+        yarn.setName(in.readString());
         this.projectName = in.readString();
-        this.totalYardage = in.readInt();
+        yarn.setTotalYards(in.readInt());
         this.yardageUsed = in.readInt();
-        this.colorWay = in.readString();
+        yarn.setColorway(in.readString());
         this.size = in.readFloat();
         this.notes = in.readArrayList(null);
+        yarn.setWeight(in.readString());
+        yarn.setFiber(in.readString());
+        this.needleSize = in.readFloat();
+        this.needleSizeType=in.readString();
     }
 
     /**
