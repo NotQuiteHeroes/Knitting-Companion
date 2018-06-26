@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<!-- Project Information ***********************************************************************-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -152,6 +153,7 @@
             android:fontFamily="@font/mahoni"
             android:id="@+id/sizeField"/>
 
+        <!-- Yarn Information *******************************************************************-->
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -253,6 +255,8 @@
             android:paddingTop="5sp"
             android:fontFamily="@font/mahoni"
             android:id="@+id/yardUsedField"/>
+
+        <!-- Needle Information *****************************************************************-->
 
         <View
             android:layout_width="match_parent"
@@ -357,6 +361,8 @@
             android:fontFamily="@font/mahoni"
             android:id="@+id/needleLengthField"/>
 
+        <!-- Notes Information ******************************************************************-->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -388,6 +394,8 @@
             android:layout_below="@id/NoteLine2"
             android:padding="5sp"
             android:id="@+id/noteField"/>
+
+        <!-- Buttons ****************************************************************************-->
 
         <Button
             android:layout_width="match_parent"
