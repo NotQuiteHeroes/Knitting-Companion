@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/offWhite">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">q
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/altairbold"
+        android:text="@string/project"
+        android:textColor="@color/darkPink"
+        android:textSize="12pt"
+        android:padding="8sp"
+        android:id="@+id/ProjectHeader"/>
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="2dp"
+         android:background="@color/darkPink"
+         android:layout_below="@+id/ProjectHeader"
+         android:id="@+id/ProjectLine" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/projectNameLabel"
+        android:textColor="@color/offWhite"
+        android:background="@color/teal"
+        android:layout_below="@id/ProjectLine"
+        android:textSize="8pt"
+        android:padding="5sp"
+        android:id="@+id/ProjectLabel"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Test"
+         android:layout_toEndOf="@id/ProjectLabel"
+         android:layout_below="@id/ProjectLine"
+         android:padding="5sp"
+         android:textSize="8pt"
+         android:id="@+id/projectField"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/patternNameLabel"
+         android:layout_below="@id/ProjectLabel"
+         android:textSize="8pt"
+         android:padding="2.5sp"
+         android:background="@color/teal"
+         android:textColor="@color/offWhite"
+         android:id="@+id/PatternLabel"/>
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Test"
+         android:layout_below="@id/ProjectLabel"
+         android:layout_toEndOf="@id/PatternLabel"
+         android:paddingStart="6.5sp"
+         android:paddingBottom="2.5sp"
+         android:paddingTop="2.5sp"
+         android:textSize="8pt"
+         android:id="@+id/patternField"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/startLabel"
+        android:layout_below="@+id/PatternLabel"
+        android:textSize="8pt"
+        android:background="@color/teal"
+        android:textColor="@color/offWhite"
+        android:textAlignment="center"
+        android:paddingStart="5sp"
+        android:paddingEnd="33sp"
+        android:paddingBottom="5sp"
+        android:id="@+id/StartLabel"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mm/dd/yy"
+        android:layout_below="@+id/patternField"
+        android:layout_toEndOf="@id/StartLabel"
+        android:textSize="8pt"
+        android:paddingStart="5sp"
+        android:paddingBottom="5sp"
+        android:paddingTop="5sp"
+        android:fontFamily="@font/mahoni"
+        android:id="@+id/startField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/endLabel"
+            android:layout_below="@+id/StartLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="42sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/EndLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mm/dd/yy"
+            android:layout_below="@+id/startField"
+            android:layout_toEndOf="@id/EndLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="5sp"
+            android:paddingTop="5sp"
+            android:fontFamily="@font/mahoni"
+            android:id="@+id/endField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sizeLabel"
+            android:layout_below="@+id/EndLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="85sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/SizeLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="28.5"
+            android:layout_below="@+id/endField"
+            android:layout_toEndOf="@id/SizeLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="3sp"
+            android:paddingTop="5sp"
+            android:fontFamily="@font/mahoni"
+            android:id="@+id/sizeField"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/SizeLabel"
+            android:id="@+id/YarnLine1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/altairbold"
+            android:text="@string/yarnLabel"
+            android:textColor="@color/darkPink"
+            android:textSize="12pt"
+            android:padding="8sp"
+            android:id="@+id/YarnHeader"
+            android:layout_below="@+id/YarnLine1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/YarnHeader"
+            android:id="@+id/YarnLine2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yarnNameLabel"
+            android:layout_below="@+id/YarnLine2"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="21sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/YarnNameLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Red Heart Super Saver"
+            android:layout_below="@+id/YarnLine2"
+            android:layout_toEndOf="@id/YardLabel"
+            android:textSize="8pt"
+            android:padding="2sp"
+            android:id="@+id/yarnNameField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/colorWayLabel"
+            android:layout_below="@+id/YarnNameLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="36sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/ColorwayLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sunset Orange"
+            android:layout_below="@+id/yarnNameField"
+            android:layout_toEndOf="@id/ColorwayLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="1.2sp"
+            android:paddingTop="5sp"
+            android:id="@+id/colorwayField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yardUsedLabel"
+            android:layout_below="@+id/ColorwayLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="20sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/YardLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="350"
+            android:layout_below="@+id/colorwayField"
+            android:layout_toEndOf="@id/YardLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="4sp"
+            android:paddingTop="5sp"
+            android:fontFamily="@font/mahoni"
+            android:id="@+id/yardUsedField"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/YardLabel"
+            android:id="@+id/NeedleLine1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/altairbold"
+            android:text="@string/needleLabel"
+            android:textColor="@color/darkPink"
+            android:textSize="12pt"
+            android:padding="8sp"
+            android:id="@+id/NeedleHeader"
+            android:layout_below="@+id/NeedleLine1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/NeedleHeader"
+            android:id="@+id/NeedleLine2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/needleSizeLabel"
+            android:layout_below="@+id/NeedleLine2"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="77sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/NeedleSizeLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="US 10"
+            android:layout_below="@+id/NeedleLine2"
+            android:layout_toEndOf="@id/NeedleSizeLabel"
+            android:textSize="8pt"
+            android:padding="4sp"
+            android:fontFamily="@font/mahoni"
+            android:id="@+id/needleSizeField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/needleTypeLabel"
+            android:layout_below="@+id/NeedleSizeLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="73sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/NeedleTypeLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Circular"
+            android:layout_below="@+id/needleSizeField"
+            android:layout_toEndOf="@id/NeedleTypeLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="2.5sp"
+            android:paddingTop="5sp"
+            android:id="@+id/needleTypeField"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/needleLengthLabel"
+            android:layout_below="@+id/NeedleTypeLabel"
+            android:textSize="8pt"
+            android:background="@color/teal"
+            android:textColor="@color/offWhite"
+            android:textAlignment="center"
+            android:paddingStart="5sp"
+            android:paddingEnd="54sp"
+            android:paddingBottom="5sp"
+            android:id="@+id/NeedleLengthLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30in"
+            android:layout_below="@+id/needleTypeField"
+            android:layout_toEndOf="@id/NeedleLengthLabel"
+            android:textSize="8pt"
+            android:paddingStart="5sp"
+            android:paddingBottom="4sp"
+            android:paddingTop="5sp"
+            android:fontFamily="@font/mahoni"
+            android:id="@+id/needleLengthField"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/NeedleLengthLabel"
+            android:id="@+id/NoteLine1" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/altairbold"
+            android:text="@string/noteLabel"
+            android:textColor="@color/darkPink"
+            android:textSize="12pt"
+            android:padding="8sp"
+            android:id="@+id/NoteHeader"
+            android:layout_below="@+id/NoteLine1"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/darkPink"
+            android:layout_below="@+id/NoteHeader"
+            android:id="@+id/NoteLine2" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/NoteLine2"
+            android:padding="5sp"
+            android:id="@+id/noteField"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addCounter"
+            android:background="@color/darkPink"
+            android:textColor="@color/offWhite"
+            android:padding="7sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/noteField"
+            android:id="@+id/counterButton"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit"
+            android:background="@color/darkPink"
+            android:textColor="@color/offWhite"
+            android:padding="7sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/counterButton"
+            android:id="@+id/editButton"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:background="@color/darkPink"
+            android:textColor="@color/offWhite"
+            android:padding="7sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editButton"
+            android:id="@+id/doneButton"/>
+
+    </RelativeLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

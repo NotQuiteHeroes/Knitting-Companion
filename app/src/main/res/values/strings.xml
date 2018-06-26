@@ -76,4 +76,8 @@
     <string name="search">Search</string>
     <string name="priority">Prioritize free and popular projects?</string>
     <string name="API_KEY">API KEY HERE</string>
+    <string name="needleSizeLabel">Size:</string>
+    <string name="needleTypeLabel">Type:</string>
+    <string name="needleLengthLabel">Length:</string>
+    <string name="needleLabel">Needle</string>
 </resources>
