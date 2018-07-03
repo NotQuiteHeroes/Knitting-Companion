@@ -20,9 +20,9 @@ public class Project implements Parcelable {
     private String note;
     private float size;
     private ArrayList<String> notes;
-    private Yarn yarn;
+    private Yarn yarn = new Yarn();
     private ArrayList<Yarn> allYarns;
-    private Needle needle;
+    private Needle needle = new Needle();
     private ArrayList<Needle> allNeedles;
 
     /**
@@ -497,12 +497,12 @@ public class Project implements Parcelable {
         dest.writeList(notes);
         dest.writeString(yarn.getWeight());
         dest.writeString(yarn.getFiber());
-        dest.writeList(allYarns);
+        //dest.writeList(allYarns);
         dest.writeFloat(needle.getSize());
         dest.writeString(needle.getSizeType());
         dest.writeString(needle.getType());
         dest.writeString(needle.getlength());
-        dest.writeList(allNeedles);
+        //dest.writeList(allNeedles);
 
     }
 
@@ -515,21 +515,21 @@ public class Project implements Parcelable {
         this.startDate = in.readString();
         this.endDate = in.readString();
         this.patternName = in.readString();
-        yarn.setName(in.readString());
+        this.yarn.setName(in.readString());
         this.projectName = in.readString();
-        yarn.setTotalYards(in.readInt());
+        this.yarn.setTotalYards(in.readInt());
         this.yardageUsed = in.readInt();
-        yarn.setColorway(in.readString());
+        this.yarn.setColorway(in.readString());
         this.size = in.readFloat();
         this.notes = in.readArrayList(null);
-        yarn.setWeight(in.readString());
-        yarn.setFiber(in.readString());
-        this.allYarns = in.readArrayList(null);
-        needle.setSize(in.readFloat());
-        needle.setSizeType(in.readString());
-        needle.setType(in.readString());
-        needle.setlength(in.readString());
-        this.allNeedles = in.readArrayList(null);
+        this.yarn.setWeight(in.readString());
+        this.yarn.setFiber(in.readString());
+        //this.allYarns = in.readArrayList(null);
+        this.needle.setSize(in.readFloat());
+        this.needle.setSizeType(in.readString());
+        this.needle.setType(in.readString());
+        this.needle.setlength(in.readString());
+        //this.allNeedles = in.readArrayList(null);
     }
 
     /**

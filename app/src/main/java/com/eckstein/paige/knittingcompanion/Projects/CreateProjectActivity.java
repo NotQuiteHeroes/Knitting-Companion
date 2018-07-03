@@ -347,13 +347,13 @@ public class CreateProjectActivity extends BaseActivity {
                 project.setStartDate(startDate);
                 project.setEndDate(endDate);
                 project.setPatternName(patternName);
-                project.setYarnName(yarnName);
+                project.setYarnName(yarnName, -1);
                 project.setProjectName(projectName);
-                project.setColorWay(colorWay);
+                project.setColorWay(colorWay, -1);
                 project.setNote(note);
-                project.setTotalYardage(totalYardage);
+                project.setTotalYardage(totalYardage, -1);
                 project.setYardageUsed(yardageUsed);
-                project.setSkeins(totalSkeins);
+                project.setSkeins(totalSkeins, -1);
                 project.setSize(size);
 
                 //add newly created project to database
@@ -412,15 +412,16 @@ public class CreateProjectActivity extends BaseActivity {
         yarnName = project.getYarnName();
         start = project.getStartDate();
         end = project.getEndDate();
-        totalYards = String.valueOf(project.getTotalYardage());
+        totalYards = String.valueOf(project.getTotalYardage(-1));
         yardsUsed = String.valueOf(project.getYardageUsed());
-        colorway = project.getColorWay();
+        colorway = project.getColorWay(-1);
         note = project.getNote(0);
         size = String.valueOf(project.getSize());
-        skeins = String.valueOf(project.getSkeins());
+        skeins = String.valueOf(project.getSkeins(-1));
 
         //insert new row
         db.insert(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
-                colorway, note, size);
+                colorway, note, size, "test", "test", "0", "test",
+                "test", "test");
     }
 }

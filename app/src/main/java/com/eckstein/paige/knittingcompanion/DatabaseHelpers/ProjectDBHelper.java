@@ -7,7 +7,9 @@ import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.eckstein.paige.knittingcompanion.Projects.Needle;
 import com.eckstein.paige.knittingcompanion.Projects.Project;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 
 import java.util.ArrayList;
 
@@ -30,6 +32,12 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
     private static final String COLORWAY = "colorway";
     private static final String NOTE = "note";
     private static final String SIZE = "size";
+    private static final String YARN_WEIGHT = "yarn_weight";
+    private static final String FIBER = "fiber";
+    private static final String NEEDLE_SIZE = "needle_size";
+    private static final String NEEDLE_TYPE = "needle_type";
+    private static final String NEEDLE_SIZE_TYPE = "needle_size_type";
+    private static final String NEEDLE_LENGTH = "needle_length";
 
     /**
      * Constructor - requires Context of calling Activity
@@ -48,7 +56,8 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
         db.execSQL("create table " + TABLE_NAME +
                 "(id integer primary key, project_name text, pattern_name text, yarn_name text, start_date text," +
                 " end_date text, total_yards text, yards_used text, skeins text, colorway text, note " +
-                "text, size text)");
+                "text, size text, yarn_weight text, fiber text, needle_size text, needle_type text, " +
+                "needle_size_type text, needle_length text)");
     }
 
     /**
@@ -80,7 +89,9 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
      */
     public boolean insert(String projectName, String patternName, String yarnName, String start,
                           String end, String totalYards, String yardsUsed, String skeins, String
-                                  colorway, String note, String size) {
+                                  colorway, String note, String size, String yarnWeight, String
+                          fiber, String needleSize, String needleSizeType, String needleType,
+                          String needleLength) {
         //writable database
         SQLiteDatabase db = this.getWritableDatabase();
         //values object to add row information to
@@ -98,6 +109,12 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
         values.put(COLORWAY, colorway);
         values.put(NOTE, note);
         values.put(SIZE, size);
+        values.put(YARN_WEIGHT, yarnWeight);
+        values.put(FIBER, fiber);
+        values.put(NEEDLE_SIZE, needleSize);
+        values.put(NEEDLE_TYPE, needleType);
+        values.put(NEEDLE_SIZE_TYPE, needleSizeType);
+        values.put(NEEDLE_LENGTH, needleLength);
         //insert row into table
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -147,7 +164,9 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
      */
     public boolean updateProject(String projectName, String patternName, String yarnName, String start,
                                  String end, String totalYards, String yardsUsed, String skeins, String
-                                         colorway, String note, String size) {
+                                         colorway, String note, String size, String yarnWeight, String
+                                         fiber, String needleSize, String needleSizeType, String needleType,
+                                 String needleLength) {
         //writable database
         SQLiteDatabase db = this.getWritableDatabase();
         //hold row information
@@ -165,6 +184,12 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
         values.put(COLORWAY, colorway);
         values.put(NOTE, note);
         values.put(SIZE, size);
+        values.put(YARN_WEIGHT, yarnWeight);
+        values.put(FIBER, fiber);
+        values.put(NEEDLE_SIZE, needleSize);
+        values.put(NEEDLE_TYPE, needleType);
+        values.put(NEEDLE_SIZE_TYPE, needleSizeType);
+        values.put(NEEDLE_LENGTH, needleLength);
         //update row where project name matches provided project name
         db.update(TABLE_NAME, values, "project_name = ? ", new String[]{projectName});
         db.close();
@@ -207,6 +232,9 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
         int totalYards, yardsUsed, totalSkeins;
         String colorway, note;
         float size;
+        String yarnWeight, fiber;
+        float needleSize;
+        String sizeType, type, length;
 
         //while there are rows to continue with...
         while (!res.isAfterLast()) {
@@ -222,10 +250,17 @@ public class ProjectDBHelper extends SQLiteOpenHelper {
             colorway = res.getString(res.getColumnIndex(COLORWAY));
             note = res.getString(res.getColumnIndex(NOTE));
             size = Float.parseFloat(res.getString(res.getColumnIndex(SIZE)));
+            yarnWeight = res.getString(res.getColumnIndex(YARN_WEIGHT));
+            fiber = res.getString(res.getColumnIndex(FIBER));
+            needleSize = Float.parseFloat(res.getString(res.getColumnIndex(NEEDLE_SIZE)));
+            sizeType = res.getString(res.getColumnIndex(NEEDLE_SIZE_TYPE));
+            type = res.getString(res.getColumnIndex(NEEDLE_TYPE));
+            length = res.getString(res.getColumnIndex(NEEDLE_LENGTH));
 
             //create Project object with row information
             Project project = new Project(startDate, endDate, patternName, projectName,
-                    yarnName, totalYards, yardsUsed, colorway, note, size, totalSkeins);
+                    yarnName, totalYards, yardsUsed, colorway, note, size, totalSkeins,
+                    yarnWeight, fiber, needleSize, sizeType, type, length);
             //add Project objected to ArrayList
             projects.add(project);
             //move to next row

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import com.eckstein.paige.knittingcompanion.DatabaseHelpers.ProjectDBHelper;
 import com.eckstein.paige.knittingcompanion.Projects.CreateProjectActivity;
 import com.eckstein.paige.knittingcompanion.Projects.Project;
+import com.eckstein.paige.knittingcompanion.Yarn.Yarn;
 import com.eckstein.paige.knittingcompanion.Projects.ViewProjectActivity;
 
 /**

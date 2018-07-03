@@ -82,7 +82,7 @@
         android:textColor="@color/offWhite"
         android:textAlignment="center"
         android:paddingStart="5sp"
-        android:paddingEnd="33sp"
+        android:paddingEnd="34sp"
         android:paddingBottom="5sp"
         android:id="@+id/StartLabel"/>
 
@@ -109,7 +109,7 @@
             android:textColor="@color/offWhite"
             android:textAlignment="center"
             android:paddingStart="5sp"
-            android:paddingEnd="42sp"
+            android:paddingEnd="42.5sp"
             android:paddingBottom="5sp"
             android:id="@+id/EndLabel"/>
 
@@ -149,7 +149,7 @@
             android:textSize="8pt"
             android:paddingStart="5sp"
             android:paddingBottom="3sp"
-            android:paddingTop="5sp"
+            android:paddingTop="0sp"
             android:fontFamily="@font/mahoni"
             android:id="@+id/sizeField"/>
 
@@ -213,7 +213,7 @@
             android:textColor="@color/offWhite"
             android:textAlignment="center"
             android:paddingStart="5sp"
-            android:paddingEnd="36sp"
+            android:paddingEnd="35sp"
             android:paddingBottom="5sp"
             android:id="@+id/ColorwayLabel"/>
 
@@ -239,7 +239,7 @@
             android:textColor="@color/offWhite"
             android:textAlignment="center"
             android:paddingStart="5sp"
-            android:paddingEnd="20sp"
+            android:paddingEnd="20.5sp"
             android:paddingBottom="5sp"
             android:id="@+id/YardLabel"/>
 
@@ -344,7 +344,7 @@
             android:textColor="@color/offWhite"
             android:textAlignment="center"
             android:paddingStart="5sp"
-            android:paddingEnd="54sp"
+            android:paddingEnd="54.5sp"
             android:paddingBottom="5sp"
             android:id="@+id/NeedleLengthLabel"/>
 

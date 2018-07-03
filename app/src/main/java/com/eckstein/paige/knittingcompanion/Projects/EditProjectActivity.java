@@ -166,7 +166,7 @@ public class EditProjectActivity extends BaseActivity {
         final EditText colorWayField = new EditText(this);
         colorWayField.setTextSize(15);
         colorWayField.setId(View.generateViewId());
-        colorWayField.setHint(project.getColorWay());
+        colorWayField.setHint(project.getColorWay(-1));
 
         //note
         final EditText noteField = new EditText(this);
@@ -352,13 +352,13 @@ public class EditProjectActivity extends BaseActivity {
                 project.setStartDate(startDate);
                 project.setEndDate(endDate);
                 project.setPatternName(patternName);
-                project.setYarnName(yarnName);
+                project.setYarnName(yarnName, -1);
                 project.setProjectName(projectName);
-                project.setColorWay(colorWay);
+                project.setColorWay(colorWay, -1);
                 project.setNote(note);
-                project.setTotalYardage(totalYardage);
+                project.setTotalYardage(totalYardage, -1);
                 project.setYardageUsed(yardageUsed);
-                project.setSkeins(totalSkeins);
+                project.setSkeins(totalSkeins, -1);
                 project.setSize(size);
 
                 //update database with edited Project
@@ -417,15 +417,16 @@ public class EditProjectActivity extends BaseActivity {
         yarnName = project.getYarnName();
         start = project.getStartDate();
         end = project.getEndDate();
-        totalYards = String.valueOf(project.getTotalYardage());
+        totalYards = String.valueOf(project.getTotalYardage(-1));
         yardsUsed = String.valueOf(project.getYardageUsed());
-        colorway = project.getColorWay();
+        colorway = project.getColorWay(-1);
         note = project.getNote(0);
         size = String.valueOf(project.getSize());
-        skeins = String.valueOf(project.getSkeins());
+        skeins = String.valueOf(project.getSkeins(-1));
 
         //update row with edited project information
         db.updateProject(projectName, patternName, yarnName, start, end, totalYards, yardsUsed, skeins,
-                colorway, note, size);
+                colorway, note, size, "test", "test", "test", "test",
+                "test", "test");
     }
 }

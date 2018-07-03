@@ -30,10 +30,9 @@ import com.eckstein.paige.knittingcompanion.Counters.ViewCounterActivity;
 public class BaseActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FrameLayout view_stub;
-    private NavigationView navigationView;
-    private DrawerLayout drawer;
-    private ActionBarDrawerToggle toggle;
+    protected NavigationView navigationView;
+    protected DrawerLayout drawer;
+    protected ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +41,6 @@ public class BaseActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        view_stub = findViewById(R.id.view_stub);
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -113,39 +111,4 @@ public class BaseActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void setContentView(int layoutResID)
-    {
-        if(view_stub != null)
-        {
-            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT);
-            View stubView = inflater.inflate(layoutResID, view_stub, false);
-            view_stub.addView(stubView, lp);
-        }
-    }
-
-    @Override
-    public void setContentView(View view)
-    {
-        if(view_stub != null)
-        {
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.MATCH_PARENT
-            );
-            view_stub.addView(view, lp);
-        }
-    }
-
-    @Override
-    public void setContentView(View view, ViewGroup.LayoutParams params)
-    {
-        if(view_stub != null)
-        {
-            view_stub.addView(view, params);
-        }
-    }
 }
