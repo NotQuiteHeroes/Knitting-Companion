@@ -77,11 +77,17 @@ public class ViewProjectActivity extends BaseActivity {
         TextView yarnName = findViewById(R.id.yarnNameField);
         yarnName.setText(project.getYarnName());
 
+        TextView yarnWeight = findViewById(R.id.yarnWeightField);
+        yarnWeight.setText(project.getWeight(-1));
+
         TextView colorway = findViewById(R.id.colorwayField);
         colorway.setText(project.getColorWay(-1));
 
         TextView yards = findViewById(R.id.yardUsedField);
         yards.setText(String.valueOf(project.getYardageUsed()));
+
+        TextView fiber = findViewById(R.id.fiberField);
+        fiber.setText(project.getFiber(-1));
 
         TextView needleSize = findViewById(R.id.needleSizeField);
         needleSize.setText(String.valueOf(project.getNeedleSize(-1)));
