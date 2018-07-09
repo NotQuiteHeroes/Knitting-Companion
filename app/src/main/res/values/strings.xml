@@ -80,4 +80,11 @@
     <string name="needleTypeLabel">Type:</string>
     <string name="needleLengthLabel">Length:</string>
     <string name="needleLabel">Needle</string>
+    <string name="sizeHint">Project size...</string>
+    <string name="weightHint">Yarn weight...</string>
+    <string name="yardHint">Yardage used...</string>
+    <string name="fiberHint">Fiber content...</string>
+    <string name="needleSizeHint">Needle size...</string>
+    <string name="needleTypeHint">Needle type...</string>
+    <string name="needleLengthHint">Needle length...</string>
 </resources>
