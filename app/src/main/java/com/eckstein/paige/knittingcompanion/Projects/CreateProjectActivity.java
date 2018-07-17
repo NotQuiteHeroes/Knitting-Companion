@@ -30,7 +30,6 @@ public class CreateProjectActivity extends BaseActivity {
     private float size;
     private String yarnWeight, fiber, needleType, needleLength;
     float needleSize;
-    private Project project;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,10 +39,6 @@ public class CreateProjectActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_edit_project, null, false);
         main.addView(contentView);
-
-        Bundle bundle = getIntent().getExtras();
-        //get project to edit
-        project = bundle.getParcelable("project");
 
         final EditText projectNameField = findViewById(R.id.projectField);
         final EditText patternNameField = findViewById(R.id.patternField);

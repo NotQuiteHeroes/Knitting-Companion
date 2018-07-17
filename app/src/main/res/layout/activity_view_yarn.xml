@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/offWhite">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!-- ***********************************************************************************-->
+            <!-- Project Information ***********************************************************************-->
+            <!-- ***********************************************************************************-->
+            <TextView
+                android:id="@+id/StashHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/altairbold"
+                android:padding="8sp"
+                android:text="@string/yarn"
+                android:textColor="@color/darkPink"
+                android:textSize="12pt" />
+
+            <View
+                android:id="@+id/YarnLine"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_below="@+id/StashHeader"
+                android:background="@color/darkPink" />
+
+            <TextView
+                android:id="@+id/YarnNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/YarnLine"
+                android:background="@color/teal"
+                android:padding="5sp"
+                android:paddingEnd="22sp"
+                android:text="@string/yarnNameLabel"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/yarnNameField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/YarnLine"
+                android:layout_toEndOf="@id/YarnNameLabel"
+                android:padding="5sp"
+                android:text="@string/yarnName"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/ColorwayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/YarnNameLabel"
+                android:background="@color/teal"
+                android:padding="2.5sp"
+                android:paddingEnd="39sp"
+                android:text="@string/colorWayLabel"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/colorwayField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/YarnNameLabel"
+                android:layout_toEndOf="@id/ColorwayLabel"
+                android:paddingBottom="2.5sp"
+                android:paddingStart="6.5sp"
+                android:paddingTop="2.5sp"
+                android:text="@string/colorWayName"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/WeightLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ColorwayLabel"
+                android:background="@color/teal"
+                android:paddingBottom="5sp"
+                android:paddingEnd="12sp"
+                android:paddingStart="5sp"
+                android:text="@string/weightLabel"
+                android:textAlignment="center"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/weightField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/colorwayField"
+                android:layout_toEndOf="@id/WeightLabel"
+                android:paddingBottom="5sp"
+                android:paddingStart="5sp"
+                android:paddingTop="5sp"
+                android:text="@string/weightHint"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/FiberLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/WeightLabel"
+                android:background="@color/teal"
+                android:paddingBottom="5sp"
+                android:paddingEnd="5sp"
+                android:paddingStart="5sp"
+                android:text="@string/fiberLabel"
+                android:textAlignment="center"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/fiberField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/weightField"
+                android:layout_toEndOf="@id/FiberLabel"
+                android:fontFamily="@font/mahoni"
+                android:paddingBottom="5sp"
+                android:paddingStart="5sp"
+                android:paddingTop="5sp"
+                android:text="@string/fiberHint"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/YardsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/FiberLabel"
+                android:background="@color/teal"
+                android:paddingBottom="5sp"
+                android:paddingEnd="22sp"
+                android:paddingStart="5sp"
+                android:text="@string/totalYardLabel"
+                android:textAlignment="center"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/yardsField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fiberField"
+                android:layout_toEndOf="@id/YardsLabel"
+                android:fontFamily="@font/mahoni"
+                android:paddingBottom="3sp"
+                android:paddingStart="5sp"
+                android:paddingTop="0sp"
+                android:text="@string/totalYards"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/SkeinsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/YardsLabel"
+                android:background="@color/teal"
+                android:paddingBottom="5sp"
+                android:paddingEnd="63sp"
+                android:paddingStart="5sp"
+                android:text="@string/skeinsLabel"
+                android:textAlignment="center"
+                android:textColor="@color/offWhite"
+                android:textSize="8pt" />
+
+            <TextView
+                android:id="@+id/skeinsField"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/yardsField"
+                android:layout_toEndOf="@id/SkeinsLabel"
+                android:fontFamily="@font/mahoni"
+                android:paddingBottom="3sp"
+                android:paddingStart="5sp"
+                android:paddingTop="0sp"
+                android:text="@string/skeinsHint"
+                android:textSize="8pt" />
+
+
+
+            <!-- ***********************************************************************************-->
+            <!-- Buttons ****************************************************************************-->
+            <!-- ***********************************************************************************-->
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/skeinsField"
+                android:id="@+id/editButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5sp"
+                android:layout_marginEnd="5sp"
+                android:layout_marginStart="5sp"
+                android:layout_marginTop = "10sp"
+                android:background="@color/darkPink"
+                android:padding="7sp"
+                android:text="@string/edit"
+                android:textColor="@color/offWhite"/>
+            <Button
+                android:id="@+id/doneButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editButton"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5sp"
+                android:layout_marginEnd="5sp"
+                android:layout_marginStart="5sp"
+                android:background="@color/darkPink"
+                android:padding="7sp"
+                android:text="@string/done"
+                android:textColor="@color/offWhite" />
+
+        </RelativeLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

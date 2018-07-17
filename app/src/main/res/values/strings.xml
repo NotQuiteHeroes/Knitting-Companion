@@ -87,4 +87,6 @@
     <string name="needleSizeHint">Needle size...</string>
     <string name="needleTypeHint">Needle type...</string>
     <string name="needleLengthHint">Needle length...</string>
+    <string name="totalYards">Total yards per skein...</string>'
+    <string name="skeinsHint">Skeins owned...</string>
 </resources>
